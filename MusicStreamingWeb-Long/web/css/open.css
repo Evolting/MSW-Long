@@ -29,6 +29,9 @@
     padding-top: 10px;
     overflow-x: scroll;
 }
+.large-boxes::-webkit-scrollbar{
+    display: none;
+  }
 .middle_section{
     padding: 10px 0px 0px 10px;
 }

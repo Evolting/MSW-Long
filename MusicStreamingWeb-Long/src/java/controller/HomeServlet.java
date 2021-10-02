@@ -59,12 +59,12 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        SongDAO sdb = new SongDAO();
+//        SongDAO sdb = new SongDAO();
+//        
+//        List<Song> top6 = sdb.getLatest();
+//        request.setAttribute("top6", top6);
         
-        List<Song> top6 = sdb.getLatest();
-        request.setAttribute("top6", top6);
-        
-        request.getRequestDispatcher("Index.jsp").forward(request, response);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 
     /**

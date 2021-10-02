@@ -18,8 +18,8 @@
         <link rel="stylesheet" href="css/mediaqueries.css">
         <link rel="stylesheet" href="css/hero.css">
         <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" asp-append-version="true" />
-
+        <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>Home</title>
     </head>
     <body>
@@ -28,78 +28,439 @@
         <section class="hero">
             <div class="hero-container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Go Premium. Be happy.</h1>
-                    <button class="hero-button" href="Login.html">GET PREMIUM ACCOUNT</button>
-                    <div class="terms">
-                        <span>*</span>
-                        <a href="#" class="hero-terms-link">Terms and conditions</a><span>apply.</span>
-                    </div>
+                    <section id="slider">
+                        <input type="radio" name="slider" id="s1" checked>
+                        <input type="radio" name="slider" id="s2">
+                        <input type="radio" name="slider" id="s3">
+                        <input type="radio" name="slider" id="s4">
+                        <input type="radio" name="slider" id="s5">
+
+                        <label for="s1" id="slide1"></label>
+                        <label for="s2" id="slide2"></label>
+                        <label for="s3" id="slide3"></label>
+                        <label for="s4" id="slide4"></label>
+                        <label for="s5" id="slide5"></label>
+                    </section>
+
                 </div>
             </div>
         </section>
         <!-- GENRES -->
-        <section class="albums" style="background: url('https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/SHS_Press_Image_20180829210243__1025eaf4.jpg');">
-            <div class="albums-container">
-                <h2 style="padding: 20px 0; font-size:xx-large;color:white">Your top genres</h2>
-                <div class="genres_playlist">
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWUa8ZRTfalHk" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYs83FtTMQFw" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWT1y71ZcMPe5" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0F4i7Q9pshJ" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYLMi9ZNZUaz" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX7DJr8fImN7B" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8W1KRahEf22" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWXyWQDPxZbns" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0BcQWzuB7ZO" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWX3sGzKRxSTn" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWT2oR9BciC32" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <a href="" class="more">And more...</a>
-                </div>
-            </div>
-
-        </section>
-        <!-- PODCAST -->
-        <section class="albums" style="background: url('https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/S7_20180826013339__a9db2c48.jpg');">
-            <div class="albums-container">
-                <h2 style="padding: 20px 0; font-size:xx-large;">TOP PODCAST</h2>
-                <div class="genres_playlist">
-                    <iframe src="https://open.spotify.com/embed/show/7Eo5RqrItEwmuwSJv5n6QZ" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/show/3KAOtwtuHrBznKxkQfY0v6" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/show/0X0b4Wb7cgvs7UCVSBaqGo" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/show/5PrXI00Z7y7V755LL2Eah8" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/show/3aP5rlYKQSJs1qEMfPhh8b" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <iframe src="https://open.spotify.com/embed/show/6wPSMH6Yg6ghl4yPZ9YWMf" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                    <a href="" class="more" style="color:black">And more...</a>
-                </div>
-            </div>
-
-        </section>
-        <!-- ALBUMS -->
-        <section class="albums" style="background: url('https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Free_Experience_Cover_20180823163647__60b8c1d6.jpg');">
-            <div class="albums-container">
-                <div class="albums-content">
-                    <h2>Looking for music?</h2>
-                    <p>Start listening to the best new releases.</p>
-                    <a href="login"><button>JOIN WITH US</button></a>
-                    <!-- @*<iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>*@ -->
-                </div>
-                <div class="albums-cards-container">
-                    <!-- Travis Scott -->
-                    <c:forEach items="${requestScope.top6}" var="song">
-                        <div class="album">
-                            <img src="${song.img}" />
-                            <div class="album-info">
-                                <h2>${song.name}</h2>
-                                <h4>Travis Scott</h4>
-                                <a href="player?id=${song.songID}">PLAY NOW</a>
+        <div class="my_preview">
+            <div class="preview_body">
+                <div class="side_bar">
+                    <!-- Single Album  -->
+                    <div style="margin-left:20px"> 
+                        <span  style="font-size:x-large;font-weight:bolder">New Music</span>
+                        <!-- box -->
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/song/2021/09/09/f/c/f/d/1631181753902_300.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/song/2021/09/09/f/c/f/d/1631181753902_300.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/song/2021/09/09/f/c/f/d/1631181753902_300.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/song/2021/09/09/f/c/f/d/1631181753902_300.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <!-- box  -->
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/song/2021/09/09/f/c/f/d/1631181753902_300.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
                             </div>
                         </div>
-                    </c:forEach>
+                    </div>  
+                    <!-- Topic   -->
+                    <div style="display: flex;margin-top:7%;flex-direction:column" >
+                        <span  style="font-size:x-large;font-weight:bolder">Hot Topic</span>
+                        <div style="display: flex;">
+                            <div style="width: 270px;height:200px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/slideshow/2021/09/27/a/4/0/9/1632721702262_org.jpg" alt="" style="border-radius:5%;width: 260px;height:140px">
+                            </div>
+                            <div style="width: 270px;height:200px">
+                                <img src="http://avatar.nct.nixcdn.com/topic/mobile/2020/06/15/9/d/c/3/1592214676187.jpg" alt="" style="border-radius:5%;width: 260px;height:140px">
+                            </div>
+                            <div style="width: 270px;height:200px">
+                                <img src="http://avatar.nct.nixcdn.com/topic/mobile/2020/06/15/9/d/c/3/1592214676187.jpg" alt="" style="border-radius:5%;width: 260px;height:140px">
+                            </div>
+                            <div style="width: 270px;height:200px">
+                                <img src="http://avatar.nct.nixcdn.com/topic/mobile/2020/06/15/9/d/c/3/1592214676187.jpg" alt="" style="border-radius:5%;width: 260px;height:140px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Suggestion  -->
+                    <div style="margin-left:20px"> 
+                        <span  style="font-size:x-large;font-weight:bolder">Recent Release</span>
+                        <!-- box -->
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- box2 -->
+                        <div style="display: flex;justify-content: space-between;margin-top:3%">
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebdfc6c2a5b7078b21188a0cde/2/en/default" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div style="margin-top:7%;">
+                        <span  style="font-size:x-large;font-weight:bolder">Today's Hit</span>
+                        <div class="grid-container">
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                            <div class="item1">
+                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebb87f94414a1c55088c498953/3/vi/default" alt="">
+                                <div style="display:flex;flex-direction:column;justify-content: center;padding:10px">
+                                    <span>Song's name</span>
+                                    <span>Song's Artis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suggestion  -->
+                    <div style="margin-left:20px;margin-top:2%"> 
+                        <span  style="font-size:x-large;font-weight:bolder">TOP 100</span>
+                        <!-- box -->
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/playlist/2021/04/07/2/7/0/9/1617776161396.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/playlist/2021/04/07/2/7/0/9/1617776161396.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/playlist/2021/04/07/2/7/0/9/1617776161396.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/playlist/2021/04/07/2/7/0/9/1617776161396.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+
+                            <div style="height:170px;width: 200px;display:flex;flex-direction:column;margin-top:20px">
+                                <img src="https://avatar-ex-swe.nixcdn.com/playlist/2021/04/07/2/7/0/9/1617776161396.jpg" alt="" style="width: 170px;height:200px">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Album's name</span>
+                                    <span>Album's Artis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RElated Artist  -->
+                    <div style="margin:20px; margin-top:7%"> 
+                        <span  style="font-size:x-large;font-weight:bolder">WEEKLY ARTIST CHART</span>
+                        <!-- box -->
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
+                                <img src="https://avatar-ex-swe.nixcdn.com/singer/avatar/2019/10/31/c/0/b/8/1572506582623_600.jpg" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Artist's name</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
+                                <img src="https://i.scdn.co/image/ab67616d00001e02babcd515ad455b2c49c54c96" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Artist's name</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
+                                <img src="https://avatar-ex-swe.nixcdn.com/singer/avatar/2020/08/13/a/9/8/e/1597294555540_600.jpg" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Artist's name</span>
+                                </div>
+                            </div>
+                            <!-- box -->
+                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
+                                <img src="https://i.scdn.co/image/ab6761610000e5eba6351422d2712ababafd2ae6" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
+                                <div style="display: flex;
+                                     flex-direction: column;
+                                     align-items: center; font-weight:bolder;font-size:larger">
+                                    <span>Artist's name</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+
+                <div class="my_body">
+                    <h1>Top songs</h1>
+                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M" width="300" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <h1>Top Album</h1>
+                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYs83FtTMQFw" width="300" height="400" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <h1>Top Podcast</h1>
+                    <iframe src="https://open.spotify.com/embed/show/7Eo5RqrItEwmuwSJv5n6QZ" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe src="https://open.spotify.com/embed/show/0X0b4Wb7cgvs7UCVSBaqGo" width="300" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 </div>
             </div>
-
-        </section>
+        </div>
 
         <%@include file="shared/footer.jsp" %>
     </body>

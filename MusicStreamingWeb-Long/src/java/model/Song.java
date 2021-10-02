@@ -5,22 +5,25 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author nvlon
  */
 public class Song {
-    private int songID, viewCount;
-    private String name, singer, genre, img, uri;
+    private int songID, likeCount;
+    private String name, genre, img, uri;
+    private List<Singer> artist = new ArrayList<>(); 
 
     public Song() {
     }
 
-    public Song(int songID, int viewCount, String name, String singer, String genre, String img, String uri) {
+    public Song(int songID, int likeCount, String name, String genre, String img, String uri) {
         this.songID = songID;
-        this.viewCount = viewCount;
+        this.likeCount = likeCount;
         this.name = name;
-        this.singer = singer;
         this.genre = genre;
         this.img = img;
         this.uri = uri;
@@ -34,12 +37,12 @@ public class Song {
         this.songID = songID;
     }
 
-    public int getViewCount() {
-        return viewCount;
+    public int getlikeCount() {
+        return likeCount;
     }
 
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
+    public void setlikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 
     public String getName() {
@@ -48,14 +51,6 @@ public class Song {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSinger() {
-        return singer;
-    }
-
-    public void setSinger(String singer) {
-        this.singer = singer;
     }
 
     public String getGenre() {
@@ -82,9 +77,17 @@ public class Song {
         this.uri = uri;
     }
 
+    public List<Singer> getArtist() {
+        return artist;
+    }
+
+    public void setArtist(List<Singer> artist) {
+        this.artist = artist;
+    }
+
     @Override
     public String toString() {
-        return "Song{" + "songID=" + songID + ", name=" + name + ", singer=" + singer + ", genre=" + genre + ", img=" + img + ", uri=" + uri + ", viewCount=" + viewCount + '}';
+        return "Song{" + "songID=" + songID + ", likeCount=" + likeCount + ", name=" + name + ", genre=" + genre + ", img=" + img + ", uri=" + uri + ", artist=" + artist + '}';
     }
-    
+
 }

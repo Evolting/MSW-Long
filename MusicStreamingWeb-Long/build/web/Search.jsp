@@ -78,7 +78,7 @@
                 <div class="collection_header">
                     <div class="header_left">
                         <form action="search">
-                            <input type="search" value="${requestScope.query}" id="myInput" name="query" placeholder="Search">
+                            <input oninput="searchByName(this)" type="search" value="${requestScope.query}" id="myInput" name="query" placeholder="Search">
                             <button type="submit" class="btn btn-search fa fa-search"></button>
                         </form>
                     </div>
@@ -118,56 +118,24 @@
                     </div>
                 </div>
                 <!--                <h1 style="font-size:xx-large;padding:20px 0">Good evening user's name</h1>-->
-                <h1 style="margin-top: 20px">Songs</h1>
-                <div class="boxes">
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
+<!--                <p style="font-style: italic; margin-top: 10px">Search result for "${requestScope.query}"</p>-->
+                <h1 style="font-size:x-large;padding:20px 0">Song</h1>
+                <div class="boxes" id="loadAjax">
+                    <c:forEach items="${requestScope.result}" var="song">
+                        <div class="box">
+                            <div class="box_image">
+                                <img src="${song.img}" alt="">
+                            </div>
+                            <div class="box_tittle">
+                                <a href="player?songID=${song.songID}">${song.name}</a>
+                                <p style="font-size: smaller; font-weight: normal">
+                                    <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                        <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                    </c:forEach>
+                                </p>
+                            </div>
                         </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                        </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                        </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                        </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                        </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box_image">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                        </div>
-                        <div class="box_tittle">
-                            Album suggest
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
                 <div class="middle_section">
                     <h1 style="font-size:x-large;padding:20px 0">Playlist</h1>
@@ -202,6 +170,26 @@
                 <h1 style="font-size:x-large;padding:20px 0">Artist</h1>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function searchByName(param) {
+                var txt = param.value;
+                $.ajax({
+                    url: "/MusicStreamingWeb-Long/searchAjax",
+                    type: 'GET',
+                    data: {
+                        query: txt
+                    },
+                    success: function (data) {
+                        var row = document.getElementById("loadAjax");
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+
+                    }
+                });
+            }
+        </script>
         <!--            <div class="player_footer">
                         <div class="footer_left">
                             <img class="song_playing"
@@ -249,6 +237,5 @@
                             </div>
                         </div>
                     </div>-->
-    </div>
-</body>
+    </body>
 </html>

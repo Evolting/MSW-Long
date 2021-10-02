@@ -5,12 +5,15 @@
  */
 package controller;
 
+import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Song;
 
 /**
  *
@@ -59,8 +62,15 @@ public class SearchServlet extends HttpServlet {
         String query = request.getParameter("query");
         request.setAttribute("query", query);
 
+        SongDAO sdb = new SongDAO();
+        List<Song> result = sdb.getSongByName(query);
+        request.setAttribute("result", result);
+        
 //        PrintWriter out = response.getWriter();
 //        out.print(query+" to the search JSP");
+//        for (int i = 0; i < result.size(); i++) {
+//            out.println(i+" "+result.get(i));
+//        }
         request.getRequestDispatcher("Search.jsp").forward(request, response);
     }
 

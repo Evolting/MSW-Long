@@ -11,15 +11,16 @@ package model;
  */
 public class Singer {
     private int singerID;
-    private String name, info;
+    private String name, info, img;
 
     public Singer() {
     }
 
-    public Singer(int singerID, String name, String info) {
+    public Singer(int singerID, String name, String info, String img) {
         this.singerID = singerID;
         this.name = name;
         this.info = info;
+        this.img = img;
     }
 
     public int getSingerID() {
@@ -46,9 +47,17 @@ public class Singer {
         this.info = info;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
-        return "Singer{" + "singerID=" + singerID + ", name=" + name + ", info=" + info + '}';
+        return "Singer{" + "singerID=" + singerID + ", name=" + name + ", info=" + info + ", img=" + img + '}';
     }
     
 }

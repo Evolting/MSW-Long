@@ -36,6 +36,14 @@
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>controller.AccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchAjaxServlet</servlet-name>
+        <servlet-class>controller.SearchAjaxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>controller.IndexServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAjaxServlet</servlet-name>
+        <url-pattern>/searchAjax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -72,13 +72,14 @@
                         <p>
                             Hip hop
                         </p>
-
                     </div>
                 </div>
                 <div class="colection_body">
                     <div class="collection_header">
                         <div class="header_left">
-                            <i class="fas fa-chevron-circle-left fa-3x" style="color:black"></i>
+                            <a href="javascript: history.go(-1)">
+                                <i class="fas fa-chevron-circle-left fa-3x" style="color:black"></i>
+                            </a>
                         </div>
                         <div class="header_right">
                             <c:if test="${sessionScope.account==null}" >
@@ -115,22 +116,23 @@
                             </c:if>
                         </div>
                     </div>
-                    <div class="body_info">
-                        <img
-                            src="https://cf.shopee.vn/file/8f1149f4f1f6bdf77bee6b55317d98f6" />
-                        <div class="body_info_text">
-                            <strong>PLAYLIST</strong>
-                            <h2>DISCOVERY WEEKLY</h2>
-                            <p>Description...</p>
+                    <c:forEach items="${requestScope.song.artist}" var="singer">
+                        <div class="body_info" style="margin: 20px;">
+                            <img src="${singer.img}" />
+                            <div class="body_info_text">
+                                <!--                                <strong></strong>-->
+                                <a href="#"><h2>${singer.name}</h2></a>
+                                <p>${singer.info}</p>
+                            </div>
                         </div>
-                    </div>
+                    </c:forEach>
                     <div class="body_songs">
-                        <div class="body_song_icon play_button">
-                            <i class="fas fa-play-circle fa-5x" id="playlist_body_suffle" style="color: green;"></i>
-                            <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
-                            <i class="far fa-heart fa-2x" style="color: green;"></i>
-                            <i class="fas fa-ellipsis-h fa-2x"></i>
-                        </div>
+                        <!--                        <div class="body_song_icon play_button">
+                                                    <i class="fas fa-play-circle fa-5x" id="playlist_body_suffle" style="color: green;"></i>
+                                                    <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
+                                                    <i class="far fa-heart fa-2x" style="color: green;"></i>
+                                                    <i class="fas fa-ellipsis-h fa-2x"></i>
+                                                </div>-->
 
                         <div class="playlist_song">
                         </div>
@@ -144,7 +146,7 @@
                          src="" />
                     <div class="song_info">
                         <h4 id="my_tittle"></h4>
-                        <p id="my_artis"></p>
+                        <!--                        <p id="my_artis"></p>-->
                     </div>
                 </div>
 
@@ -165,7 +167,7 @@
                         <span id="start_time"></span>
                         <div class="progress-bar">
                             <div class="progress" id="progress"></div>
-                            <audio id="audio" src=""></audio>
+                            <audio id="audio" src="http://localhost:8080/MusicStreamingWeb/music/Chillies.mp3"></audio>
                         </div>
                         <span id="end_time"></span>
                     </div>
@@ -208,52 +210,10 @@
             isRepeat: false,
             songs: [
                 {
-                    name: 'Real love',
-                    singer: 'My Anh, Khac Hung',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Reallove.mp3',
-                    image: 'https://static.yeah1.com/uploads/editors/26/2021/07/30/gGOSwwQVwszafKF3HJAHQ5klSWXu3ji7KSJhqttP.jpg'
-                },
-                {
-                    name: 'Co em doi bong vui',
-                    singer: 'Chillies',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Chillies.mp3',
-                    image: 'https://images.genius.com/5822e08274e4684b00a177ff3ef2f33e.551x551x1.jpg'
-                },
-                {
-                    name: 'Huong',
-                    singer: 'Van Mai Huong',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Huong.mp3',
-                    image: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/01/22/7/e/7/0/1611280899564.jpg'
-                },
-                {
-                    name: 'GENE',
-                    singer: 'Binz',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/GENE.mp3',
-                    image: 'https://tudienwiki.com/wp-content/uploads/2020/09/Binz.png'
-                },
-                {
-                    name: 'Krazy',
-                    singer: 'Binz',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Krazy.mp3',
-                    image: 'https://avatar-nct.nixcdn.com/mv/2018/02/02/a/5/2/9/1517539425061_640.jpg'
-                },
-                {
-                    name: 'Phai Chang Em Da Yeu',
-                    singer: 'Juky San',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Phaichangemdayeu.mp3',
-                    image: 'https://i1.sndcdn.com/artworks-zEUVw9b46Eu9qGYe-eATUzg-t500x500.jpg'
-                },
-                {
-                    name: 'Thang nam',
-                    singer: 'Soobin Hoang Son',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/Thangnam.mp3',
-                    image: 'https://cdnmedia.thethaovanhoa.vn/Upload/3uPkfvAxvuOpUQrmKeiDaA/files/2021/08/B/22/playah_Fotor.jpg'
-                },
-                {
-                    name: 'They Said',
-                    singer: 'Binz',
-                    path: 'http://localhost:8080/MusicStreamingWeb-Long//music/TheySaid.mp3',
-                    image: 'https://i.ytimg.com/vi/XdBsAXOxYfo/hqdefault.jpg'
+                    name: '${requestScope.song.name}',
+                    singer: '${requestScope.song.artist}',
+                    path: '${requestScope.song.uri}',
+                    image: '${requestScope.song.img}'
                 }
             ],
 
@@ -265,7 +225,6 @@
             <img class="songRow_album" src="\${song.image}" />
                 <div class="songRow_info" style="width: 80%;">
                    <h1>\${song.name}</h1>
-                      <p>\${song.singer}</p>
                 </div>
                 <div class="loader \${index== this.currentIndex? 'playing':''}" >
                     <span class="stroke"></span>
@@ -302,7 +261,7 @@
                     } else {
                         $('.fa-play-circle').addClass("my pause")
                         $('.fa-pause-circle').removeClass("pause")
-                        audio.get(0).play()
+                        audio.get(0).play();
                         audio.get(0).ontimeupdate = function () {
                             var s = parseInt(audio.get(0).currentTime % 60);
                             var m = parseInt((audio.get(0).currentTime / 60) % 60);

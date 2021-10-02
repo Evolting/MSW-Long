@@ -5,12 +5,14 @@
  */
 package controller;
 
+import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Song;
 
 /**
  *
@@ -56,7 +58,16 @@ public class PlayerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int songID = Integer.parseInt(request.getParameter("songID"));
+        
+        SongDAO sdb = new SongDAO();
+        Song s = sdb.getSongByID(songID);
+        
+        request.setAttribute("song", s);
         request.getRequestDispatcher("Player.jsp").forward(request, response);
+        
+//        PrintWriter out = response.getWriter();
+//        out.print(songID);
     }
 
     /**
@@ -70,7 +81,7 @@ public class PlayerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**
