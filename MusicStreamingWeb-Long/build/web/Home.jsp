@@ -39,13 +39,13 @@
                     <div class="sidebar_option">
                         <i class="fas fa-home" style="color: white"></i> 
                         <p>
-                            <a href="search" style="color: white">Home</a>
+                            <a href="home" style="color: white">Home</a>
                         </p>
                     </div>
                     <div class="sidebar_option">
                         <i class="fas fa-search"></i>
                         <p>
-                            <a href="search">Search</a>
+                            <a href="search?query=">Search</a>
                         </p>
 
                     </div>
@@ -147,7 +147,10 @@
                             </c:if>
                         </div>
                     </div>
-                    <h1 style="font-size:xx-large;padding:20px 0">Hope you enjoy, ${sessionScope.account.username}</h1>
+
+
+                    <h1 style="font-size:xx-large;padding:20px 0">Hope you enjoy<c:if test="${sessionScope.account != null}">, ${sessionScope.account.username}</c:if></h1>
+
                     <div class="boxes">
                         <div class="box">
                             <div class="box_image">
@@ -231,41 +234,41 @@
                     <h1 style="font-size:x-large;padding:20px 0">Trending Podcast</h1>
                 </div>
             </div>
-<!--            <div class="player_footer">
-                <div class="footer_left">
-                    <img class="song_playing" src="https://upload.wikimedia.org/wikipedia/vi/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png" />
-                    <div class="song_info">
-                        <h4>34+35</h4>
-                        <p>Ariana Grande</p>
-                    </div>
-                </div>
-                <div class="footer_center">
-                    <div class="control_bar">
-                        <i class="fas fa-random fa-2x" style="color:green" id="control_green"></i>
-                        <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
-                        <i class="far fa-play-circle fa-5x" id="control_icon"></i>
-                        <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
-                        <i class="fas fa-redo fa-2x" style="color:green" id="control_green"></i>
-                    </div>
-                    <div class="progress-container">
-                        <span>0:49</span>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
-                        </div>
-                        <span>3:15</span>
-                    </div>   
-                </div>
-                <div class="footer_right">
-                    <i class="fas fa-list-ul fa-2x"></i>
-                    <i class="fas fa-volume-up fa-2x"></i>
-                    <div class="input-div">
-                        <div class="volumn-input-div">
-                            <input type="range" value="100" step="5">
-                            <div class="volume-progress"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+            <!--            <div class="player_footer">
+                            <div class="footer_left">
+                                <img class="song_playing" src="https://upload.wikimedia.org/wikipedia/vi/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png" />
+                                <div class="song_info">
+                                    <h4>34+35</h4>
+                                    <p>Ariana Grande</p>
+                                </div>
+                            </div>
+                            <div class="footer_center">
+                                <div class="control_bar">
+                                    <i class="fas fa-random fa-2x" style="color:green" id="control_green"></i>
+                                    <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
+                                    <i class="far fa-play-circle fa-5x" id="control_icon"></i>
+                                    <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
+                                    <i class="fas fa-redo fa-2x" style="color:green" id="control_green"></i>
+                                </div>
+                                <div class="progress-container">
+                                    <span>0:49</span>
+                                    <div class="progress-bar">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <span>3:15</span>
+                                </div>   
+                            </div>
+                            <div class="footer_right">
+                                <i class="fas fa-list-ul fa-2x"></i>
+                                <i class="fas fa-volume-up fa-2x"></i>
+                                <div class="input-div">
+                                    <div class="volumn-input-div">
+                                        <input type="range" value="100" step="5">
+                                        <div class="volume-progress"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
         </div>
     </body>
 </html>

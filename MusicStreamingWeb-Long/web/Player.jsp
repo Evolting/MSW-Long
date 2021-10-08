@@ -14,8 +14,9 @@
         <link rel="stylesheet" href="css/player.css">
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/header.css">
+        <script src="./js/site.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <style>
             .login_button {
                 color: white; 
@@ -31,7 +32,17 @@
         <title>Player</title>
     </head>
     <body>
-
+        <div class="sharing_option">
+            <div class="sharing-content" style="background:rgba(241, 226, 226, 0.2)">
+                <i class="fas fa-times"></i>
+                <h2 style="text-align: center; padding-bottom:10px;font-size:20px">Share to</h2>
+                <nav style="text-align: center;padding-bottom:20px">
+                    <li class="tweet-share"><i class="fab fa-twitter"></i></li>
+                    <li class="facebook-share"><i class="fab fa-facebook-f"></i></li> 
+                    <li class="wa-share"><i class="fab fa-whatsapp"></i></li> 
+                </nav>
+            </div>
+        </div>
         <div class="player">
             <div class="player_body">
                 <div class="side_bar_home">
@@ -190,6 +201,37 @@
         </div>
     </body>
     <script>
+        //handle Sharing music
+
+        setShareLinks();
+
+        function socialWindowScreen(url) {
+            var left = (screen.width - 570) / 2;
+            var top = (screen.height - 570) / 2;
+
+            var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+
+            window.open(url, "NewWindow", params)
+        }
+
+        function setShareLinks() {
+            var pageUrl = encodeURIComponent(document.URL);
+            var tweet = encodeURIComponent($("meta[property ='og:description']").attr("content"));
+
+            $(".facebook-share").on("click", function () {
+                url = "https://www.facebook.com/sharer/sharer.php?u=" + pageUrl;
+                socialWindowScreen(url);
+            })
+            $(".tweet-share").on("click", function () {
+                url = "https://www.twitter.com/intent/tweet?url=" + pageUrl + "&text=" + tweet;
+                socialWindowScreen(url);
+            })
+            $(".wa-share").on("click", function () {
+                url = "https://wa.me/?text=" + pageUrl;
+                socialWindowScreen(url);
+            })
+        }
+        //handle play music
         const playlist = $('.playlist_song');
         const player_tittle = $('#my_tittle');
         const player_thumb = $('.song_playing');
@@ -221,12 +263,12 @@
                 const htmls = this.songs.map((song, index) => {
                     console.log(song.image)
                     return `
-       <div class="song_row \${index===this.currentIndex? 'song_active':''}" data-index="\${index}">
+       <div class="song_row \${index == this.currentIndex ? 'song_active' : ''}" data-index="\${index}">
             <img class="songRow_album" src="\${song.image}" />
                 <div class="songRow_info" style="width: 80%;">
                    <h1>\${song.name}</h1>
                 </div>
-                <div class="loader \${index== this.currentIndex? 'playing':''}" >
+                <div class="loader \${index == this.currentIndex ? 'playing' : ''}" >
                     <span class="stroke"></span>
                     <span class="stroke"></span>
                     <span class="stroke"></span>
@@ -235,9 +277,14 @@
                     <span class="stroke"></span>
                     <span class="stroke"></span>
                 </div>
-                <i class="far fa-heart"></i>
                 <span style="padding:0 10px">04:23</span>
-                <i class="fas fa-ellipsis-h"></i>
+                <i class="fas fa-ellipsis-h toolbottom">
+                    <span class="tooltiptext">
+                        <p id="my_share" onclick="myFunction()"><i class="fas fa-share-alt" ></i> Share</p>
+                        <p><i class="fas fa-arrow-alt-circle-down"></i><a target="_blank" href="\${song.path}" download=""> Download</a></p>  
+                        <p><i class="fab fa-stack-overflow"></i> Add to playlist</p>
+                    </span>
+                </i>
         </div>
     `
                 })
@@ -251,8 +298,21 @@
                 })
             },
             handleEvent: function () {
-                //Handle play/pause button
+                $('.fa-times').click(function () {
+                    document.querySelector('.sharing_option').style.display = 'none';
+                })
 
+                //handle love button 
+                love_Btn.click(function () {
+                    if (love_Btn.hasClass("far")) {
+                        love_Btn.removeClass("far")
+                        love_Btn.addClass("fas")
+                    } else {
+                        love_Btn.addClass("far")
+                        love_Btn.removeClass("fas")
+                    }
+                })
+                //Handle play/pause button
                 playBtn.click(function () {
                     if ($('.fa-play-circle').hasClass("my pause")) {
                         $('.fa-play-circle').removeClass("my pause")
@@ -261,7 +321,7 @@
                     } else {
                         $('.fa-play-circle').addClass("my pause")
                         $('.fa-pause-circle').removeClass("pause")
-                        audio.get(0).play();
+                        audio.get(0).play()
                         audio.get(0).ontimeupdate = function () {
                             var s = parseInt(audio.get(0).currentTime % 60);
                             var m = parseInt((audio.get(0).currentTime / 60) % 60);

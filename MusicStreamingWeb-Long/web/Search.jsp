@@ -27,6 +27,29 @@
             .login_button:hover {
                 color: blue;
             }
+
+            /* Flashing */
+            .genres:hover img {
+                opacity: 1;
+                -webkit-animation: flash 1.5s;
+                animation: flash 1.5s;
+            }
+            @-webkit-keyframes flash {
+                0% {
+                    opacity: .8;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            @keyframes flash {
+                0% {
+                    opacity: .8;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
         </style>
         <title>Search</title>
     </head>
@@ -45,7 +68,7 @@
                 <div class="sidebar_option">
                     <i class="fas fa-search" style="color: white"></i>
                     <p>
-                        <a href="search" style="color: white">Search</a>
+                        <a href="search?query=" style="color: white">Search</a>
                     </p>
 
                 </div>
@@ -74,13 +97,12 @@
 
                 </div>
             </div>
-            <div class="colection_body" style="background: linear-gradient(rgb(187, 81, 81),black);">
-                <div class="collection_header">
-                    <div class="header_left">
-                        <form action="search">
-                            <input oninput="searchByName(this)" type="search" value="${requestScope.query}" id="myInput" name="query" placeholder="Search">
-                            <button type="submit" class="btn btn-search fa fa-search"></button>
-                        </form>
+
+            <div class="colection_body" style="background: linear-gradient(rgb(161, 86, 149),black);">
+                <div class="collection_header" style="margin-bottom: 30px;">
+                    <div class="header_left" style="background-color: white;color:gray;border-radius:30px;display:flex;align-items:center;width:90%;padding:10px">
+                        <i class="fas fa-search fa-2x"></i>
+                        <input type="text" placeholder="Search for Artists,Songs, or Playlist" size="130px" style="border: none;" oninput="searchByName(this)" value="${requestScope.query}" id="myInput" name="query">
                     </div>
                     <div class="header_right">
                         <c:if test="${sessionScope.account==null}" >
@@ -117,58 +139,40 @@
                         </c:if>
                     </div>
                 </div>
-                <!--                <h1 style="font-size:xx-large;padding:20px 0">Good evening user's name</h1>-->
-<!--                <p style="font-style: italic; margin-top: 10px">Search result for "${requestScope.query}"</p>-->
-                <h1 style="font-size:x-large;padding:20px 0">Song</h1>
+                <style>
+                    #search:focus{
+                        outline: none;
+                    }
+                </style>
+                <h1 style="font-size:xx-large;padding:20px 0">Browse all</h1>
                 <div class="boxes" id="loadAjax">
-                    <c:forEach items="${requestScope.result}" var="song">
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="${song.img}" alt="">
+                    <c:if test="${requestScope.query != '' }">
+                        <c:forEach items="${requestScope.result}" var="song">
+                            <div class="box">
+                                <div class="box_image">
+                                    <img src="${song.img}" alt="">
+                                </div>
+                                <div class="box_tittle">
+                                    <a href="player?songID=${song.songID}">${song.name}</a>
+                                    <p style="font-size: smaller; font-weight: normal">
+                                        <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                        </c:forEach>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="box_tittle">
-                                <a href="player?songID=${song.songID}">${song.name}</a>
-                                <p style="font-size: smaller; font-weight: normal">
-                                    <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                        <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
-                                    </c:forEach>
-                                </p>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${requestScope.query == '' }">
+                        <c:forEach items="${requestScope.clist}" var="category">
+                            <div class="genres" id="genres" style="width: 250px; margin: 20px;">
+                                <a href="#"><img src="${category.img}" alt="" style="width: 250px;"></a>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </c:if>
                 </div>
-                <div class="middle_section">
-                    <h1 style="font-size:x-large;padding:20px 0">Playlist</h1>
-                    <div class="large-boxes">
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                        <div class="large-boxes_box">
-                            <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                            <div class="large-boxes_tittle">Name Podcast</div>
-                        </div>
-                    </div>
-
-                </div>
-                <h1 style="font-size:x-large;padding:20px 0">Artist</h1>
             </div>
+
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>

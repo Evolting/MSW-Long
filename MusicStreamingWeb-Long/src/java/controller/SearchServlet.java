@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.CategoryDAO;
 import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Song;
 
 /**
@@ -61,11 +63,16 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         String query = request.getParameter("query");
         request.setAttribute("query", query);
+        if (query == "") {
+            CategoryDAO cdb = new CategoryDAO();
+            List<Category> c = cdb.getAllCategory();
+            request.setAttribute("clist", c);
+        } else {
+            SongDAO sdb = new SongDAO();
+            List<Song> result = sdb.getSongByName(query);
+            request.setAttribute("result", result);
+        }
 
-        SongDAO sdb = new SongDAO();
-        List<Song> result = sdb.getSongByName(query);
-        request.setAttribute("result", result);
-        
 //        PrintWriter out = response.getWriter();
 //        out.print(query+" to the search JSP");
 //        for (int i = 0; i < result.size(); i++) {
@@ -85,7 +92,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

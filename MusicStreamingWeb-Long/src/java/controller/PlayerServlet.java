@@ -67,7 +67,7 @@ public class PlayerServlet extends HttpServlet {
         request.getRequestDispatcher("Player.jsp").forward(request, response);
         
 //        PrintWriter out = response.getWriter();
-//        out.print(songID);
+//        out.print(s);
     }
 
     /**

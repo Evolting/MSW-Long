@@ -107,7 +107,7 @@
                     </div>  
                     <!-- Topic   -->
                     <div style="display: flex;margin-top:7%;flex-direction:column" >
-                        <span  style="font-size:x-large;font-weight:bolder">Hot Topic</span>
+                        <span  style="font-size:x-large;font-weight:bolder">Genres</span>
                         <div style="display: flex;">
                             <div style="width: 270px;height:200px">
                                 <img src="https://avatar-ex-swe.nixcdn.com/slideshow/2021/09/27/a/4/0/9/1632721702262_org.jpg" alt="" style="border-radius:5%;width: 260px;height:140px">

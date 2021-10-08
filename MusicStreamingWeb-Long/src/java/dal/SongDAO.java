@@ -21,7 +21,7 @@ public class SongDAO extends DBContext {
 
     public List<Song> getSongByName(String query) {
         List<Song> result = new ArrayList<>();
-        String sql = "select song.songID, name, img, uri, likeCount, categoryName\n"
+        String sql = "select song.songID, name, song.img, uri, likeCount, categoryName\n"
                 + "from song inner join genre on song.songID = genre.songID \n"
                 + "inner join category on genre.categoryID = category.categoryID\n"
                 + "where name like '%" + query + "%'";
@@ -39,7 +39,7 @@ public class SongDAO extends DBContext {
                 result.add(s);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e+" this");
         }
 
         for (int i = 0; i < result.size(); i++) {
@@ -60,7 +60,7 @@ public class SongDAO extends DBContext {
                     singer.add(sg);
                 }
             } catch (SQLException e) {
-                System.out.println(e);
+                System.out.println(e+" that");
             }
             result.get(i).setArtist(singer);
         }
@@ -70,7 +70,7 @@ public class SongDAO extends DBContext {
 
     public Song getSongByID(int songID) {
         Song s = new Song();
-        String sql1 = "select song.songID, name, img, uri, likeCount, categoryName\n"
+        String sql1 = "select song.songID, name, song.img, uri, likeCount, categoryName\n"
                 + "from song inner join genre on song.songID = genre.songID \n"
                 + "inner join category on genre.categoryID = category.categoryID\n"
                 + "where song.songID = ?";
@@ -87,7 +87,7 @@ public class SongDAO extends DBContext {
                 s.setlikeCount(rs.getInt(5));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e+" here");
         }
 
         List<Singer> singer = new ArrayList<>();

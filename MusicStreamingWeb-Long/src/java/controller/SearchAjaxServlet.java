@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.CategoryDAO;
 import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Singer;
 import model.Song;
 
@@ -34,14 +36,12 @@ public class SearchAjaxServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        PrintWriter out = response.getWriter();
         String query = request.getParameter("query");
         if (query != "") {
             request.setAttribute("query", query);
             SongDAO sdb = new SongDAO();
             List<Song> result = sdb.getSongByName(query);
-
-            PrintWriter out = response.getWriter();
 
             for (Song song : result) {
                 out.print("<div class=\"box\">\n"
@@ -60,6 +60,15 @@ public class SearchAjaxServlet extends HttpServlet {
                 }
                 out.print("       </p>\n"
                         + "  </div>\n"
+                        + "</div>");
+            }
+        } else {
+            CategoryDAO cdb = new CategoryDAO();
+            List<Category> c = cdb.getAllCategory();
+            request.setAttribute("clist", c);
+            for (Category category : c) {
+                out.print("<div class=\"genres\" id=\"genres\" style=\"width: 250px; margin: 20px;\">\n"
+                        + "    <a href=\"#\"><img src=\""+category.getImg()+"\" alt=\"\" style=\"width: 250px;\"></a>\n"
                         + "</div>");
             }
         }
