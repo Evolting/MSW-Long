@@ -28,81 +28,27 @@
                 color: blue;
             }
 
-            /* Flashing */
-            .genres:hover img {
-                opacity: 1;
-                -webkit-animation: flash 1.5s;
-                animation: flash 1.5s;
-            }
-            @-webkit-keyframes flash {
-                0% {
-                    opacity: .8;
-                }
-                100% {
-                    opacity: 1;
-                }
-            }
-            @keyframes flash {
-                0% {
-                    opacity: .8;
-                }
-                100% {
-                    opacity: 1;
-                }
+            #search:focus{
+                outline: none;
             }
         </style>
         <title>Search</title>
     </head>
     <body>
-
         <div class="player_body">
-            <div class="side_bar_home">
-                <img style="width: 70px;" src="img/logo.png" alt="">
-                <div class="sidebar_option">
-                    <i class="fas fa-home"></i>
-                    <p>
-                        <a href="home">Home</a>
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-search" style="color: white"></i>
-                    <p>
-                        <a href="search?query=" style="color: white">Search</a>
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-swatchbook"></i>
-                    <p>
-                        Your Library
-                    </p>
-
-                </div>
-                <br />
-                <strong class="sidebar_tittle"> PLAYLIST </strong>
-                <hr />
-                <div class="sidebar_option">
-                    <i class="fas fa-plus-square"></i>
-                    <p>
-                        Add new playlist
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-record-vinyl"></i>
-                    <p>
-                        Hip hop
-                    </p>
-
-                </div>
-            </div>
+            <%@include file="shared/sidebar.jsp" %>
 
             <div class="colection_body" style="background: linear-gradient(rgb(161, 86, 149),black);">
                 <div class="collection_header" style="margin-bottom: 30px;">
-                    <div class="header_left" style="background-color: white;color:gray;border-radius:30px;display:flex;align-items:center;width:90%;padding:10px">
-                        <i class="fas fa-search fa-2x"></i>
-                        <input type="text" placeholder="Search for Artists,Songs, or Playlist" size="130px" style="border: none;" oninput="searchByName(this)" value="${requestScope.query}" id="myInput" name="query">
+                    <div class="header_left" style="background-color: white; color:gray;border-radius:30px;display:flex;align-items:center;width:90%;padding:5px">
+                        <form action="search">
+                            <button type="submit"><i class="fas fa-search fa-2x"></i></button>
+                            <input type="text" placeholder="Search for Artists,Songs, or Playlist" size="130px" style="border: none;" value="${requestScope.query}" id="myInput" name="query">
+                            <select name="type" id="type" onchange="this.form.submit()">
+                                <option value="song" ${requestScope.type=='song'?'selected':''}>Song</option>
+                                <option value="artist" ${requestScope.type=='artist'?'selected':''}>Artist</option>
+                            </select>
+                        </form>                          
                     </div>
                     <div class="header_right">
                         <c:if test="${sessionScope.account==null}" >
@@ -139,107 +85,32 @@
                         </c:if>
                     </div>
                 </div>
-                <style>
-                    #search:focus{
-                        outline: none;
-                    }
-                </style>
-                <h1 style="font-size:xx-large;padding:20px 0">Browse all</h1>
-                <div class="boxes" id="loadAjax">
-                    <c:if test="${requestScope.query != '' }">
-                        <c:forEach items="${requestScope.result}" var="song">
-                            <div class="box">
-                                <div class="box_image">
-                                    <img src="${song.img}" alt="">
-                                </div>
-                                <div class="box_tittle">
-                                    <a href="player?songID=${song.songID}">${song.name}</a>
-                                    <p style="font-size: smaller; font-weight: normal">
-                                        <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
-                                        </c:forEach>
-                                    </p>
-                                </div>
+                <h1 style="font-size:xx-large;padding:20px 0">Search Results:</h1>
+                <h3>${requestScope.error}</h3>
+                <div class="large-boxes" style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
+                    <c:forEach items="${requestScope.slist}" var="song">
+                        <div class="large-boxes_box">
+                            <img src="${song.img}" alt="">
+                            <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
+                            <p style="font-size: small; font-weight: normal">
+                                <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                    <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                </c:forEach>
+                            </p>
+                        </div>
+                    </c:forEach>
+                    <c:forEach items="${requestScope.alist}" var="singer">
+                        <div class="large-boxes_box">
+                            <img src="${singer.img}" alt="">
+                            <div class="large-boxes_tittle" style="font-size: small; font-weight: bold">
+                                <a href="artist?aid=${singer.singerID}">${singer.name}</a>
                             </div>
-                        </c:forEach>
-                    </c:if>
-                    <c:if test="${requestScope.query == '' }">
-                        <c:forEach items="${requestScope.clist}" var="category">
-                            <div class="genres" id="genres" style="width: 250px; margin: 20px;">
-                                <a href="#"><img src="${category.img}" alt="" style="width: 250px;"></a>
-                            </div>
-                        </c:forEach>
-                    </c:if>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
 
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            function searchByName(param) {
-                var txt = param.value;
-                $.ajax({
-                    url: "/MusicStreamingWeb-Long/searchAjax",
-                    type: 'GET',
-                    data: {
-                        query: txt
-                    },
-                    success: function (data) {
-                        var row = document.getElementById("loadAjax");
-                        row.innerHTML = data;
-                    },
-                    error: function (xhr) {
 
-                    }
-                });
-            }
-        </script>
-        <!--            <div class="player_footer">
-                        <div class="footer_left">
-                            <img class="song_playing"
-                                 src="" />
-                            <div class="song_info">
-                                <h4 id="my_tittle"></h4>
-                                <p id="my_artis"></p>
-                            </div>
-                        </div>
-        
-                        <div class="footer_center">
-                            <div class="control_bar">
-                                <i class="fa fa-random fa-2x" id="control_green"></i>
-                                <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
-                                <div class="play_button">
-                                    <i class="far fa-play-circle fa-5x " id="control_icon"></i>
-                                    <i class="fas fa-pause-circle fa-5x my pause"></i>
-                                </div>
-        
-        
-                                <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
-                                <i class="fas fa-retweet fa-2x" id="control_green"></i>
-                            </div>
-                            <div class="progress-container">
-                                <span id="start_time"></span>
-                                <div class="progress-bar">
-                                    <div class="progress" id="progress"></div>
-                                    <audio id="audio" src=""></audio>
-                                </div>
-                                <span id="end_time"></span>
-                            </div>
-                        </div>
-                        <div class="footer_right">
-                            <i class="fas fa-list-ul fa-2x"></i>
-                            <div class="volume_control">
-                                <i id="volume" class="fas fa-volume-up fa-2x"></i>
-                                <i id="volume_mute" class="fas fa-volume-mute fa-2x changesound"></i>
-                            </div>
-        
-                            <div class="input-div">
-                                <div class="volumn-input-div">
-                                    <input type="range" value="100" step="5" min="0" >
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
     </body>
 </html>

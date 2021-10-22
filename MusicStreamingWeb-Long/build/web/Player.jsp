@@ -32,6 +32,142 @@
         <title>Player</title>
     </head>
     <body>
+        <c:if test="${sessionScope.user.status != 'premium'}">
+            <!-- Pop-up Ads  -->
+            <div class="myADs">
+                <div class="popup">
+                    <div class="contentBox">
+                        <div class="closeBtn" onclick="CloseFunc()">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <div class="offer">
+                            <div>
+                                <h3> Be Premium, Be Fun!! </h3>
+                                <h2>20<sup>%</sup><span>Off</span></h2>
+                                <p>Get Premium account to enjoy unlimited music and listen offline with no Adsvertisement! 🚀</p>
+                                <a href="contract">Get The Deal </a>
+                            </div>
+                        </div>
+                        <div class="imgBx">
+                            <img src="https://i.pinimg.com/564x/3e/b9/4b/3eb94b2c0bb87c68ba7a10264604d100.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <style>
+                .closeBtn{
+                    position: absolute;
+                    top: 10px;
+                    left: 20px;
+                    width: 40px;
+                    height: 40px;
+                    z-index: 99;
+                    cursor: pointer;
+                }
+                .contentBox .offer{
+                    position: relative;
+                    width: 300px;
+                    height: 400px;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                }
+                .contentBox .offer h3{
+                    color: #333;
+                    line-height: 1em;
+                    font-weight:300;
+                    font-size: 2em;
+                }
+                .contentBox .offer h2{
+                    color: #ff4d54;
+                    line-height: 1em;
+                    font-size: 4em;
+                }
+                .contentBox .offer h2 span{
+                    color: #333;
+                    text-transform: uppercase;
+                    font-size: 0.75em;
+                }
+                .contentBox .offer p{
+                    font-weight: 300;
+                }
+
+                .contentBox .offer a{
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background: rgb(231, 174, 67);
+                    color: white;
+                    margin-top: 15px;
+                    text-decoration: none;
+                    border-radius: 10px;
+                }
+                .myADs{
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    position: absolute;
+                    top: 0;
+                    z-index:99;
+                    display: none;
+                }
+                @keyframes mymove {
+                    from {top: 0px;}
+                    to {top: 50%;}
+                }
+                .popup{
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    animation: mymove 1s;
+                }
+                .contentBox{
+                    position: relative;
+                    width: 600px;
+                    height: 400px;
+                    background: white;
+                    border-radius: 20px;
+                    display: flex;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                    justify-content: space-between;
+                }
+                .contentBox .imgBx{
+                    position: relative;
+                    width: 300px;
+                    height: 400px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .contentBox .imgBx::before{
+                    content: '';
+                    position: absolute;
+                    border-radius: 50%;
+                }
+                .contentBox .imgBx img{
+                    position: relative;
+                    width: 320px;
+                    height: 400px;
+                }
+            </style>
+            <!-- Automatic show pop-up after 2 seconds of pages load  -->
+            <script>
+                const popup = document.querySelector('.myADs');
+                const close = document.querySelector('fa-times');
+                window.onload = function () {
+                    setTimeout(function () {
+                        popup.style.display = "block"
+                    })
+                }
+
+                function CloseFunc() {
+                    popup.style.display = "none"
+                }
+            </script>
+            <!-- End Pop-up Ads  -->
+        </c:if>
         <div class="sharing_option">
             <div class="sharing-content" style="background:rgba(241, 226, 226, 0.2)">
                 <i class="fas fa-times"></i>
@@ -45,46 +181,7 @@
         </div>
         <div class="player">
             <div class="player_body">
-                <div class="side_bar_home">
-                    <img style="width: 70px;" src="img/logo.png" alt="">
-                    <div class="sidebar_option">
-                        <i class="fas fa-home"></i>
-                        <p>
-                            <a href="home">Home</a>
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-search"></i>
-                        <p>
-                            <a href="search">Search</a>
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-swatchbook"></i>
-                        <p>
-                            Your Library
-                        </p>
-
-                    </div>
-                    <br />
-                    <strong class="sidebar_tittle"> PLAYLIST </strong>
-                    <hr />
-                    <div class="sidebar_option">
-                        <i class="fas fa-plus-square"></i>
-                        <p>
-                            Add new playlist
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i>
-                        <p>
-                            Hip hop
-                        </p>
-                    </div>
-                </div>
+                <%@include file="shared/sidebar.jsp" %>
                 <div class="colection_body">
                     <div class="collection_header">
                         <div class="header_left">
@@ -127,23 +224,28 @@
                             </c:if>
                         </div>
                     </div>
-                    <c:forEach items="${requestScope.song.artist}" var="singer">
-                        <div class="body_info" style="margin: 20px;">
-                            <img src="${singer.img}" />
-                            <div class="body_info_text">
-                                <!--                                <strong></strong>-->
-                                <a href="#"><h2>${singer.name}</h2></a>
-                                <p>${singer.info}</p>
+                    <div style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
+                        <c:forEach items="${requestScope.song.artist}" var="singer">
+                            <div class="body_info" style="margin: 20px;">
+                                <img src="${singer.img}" />
+                                <div class="body_info_text">
+                                    <a href="artist?aid=${singer.singerID}"><h2>${singer.name}</h2></a>
+                                </div>
                             </div>
+                        </c:forEach>
+                    </div>
+                    <div class="body_song_icon" style="display: flex;align-items: center;">
+                        <div class="play_button">
+                            <i class="fas fa-play-circle fa-5x " id="playlist_body_suffle" style="color: green; background-color:white;border-radius:50%;"></i>
+                            <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
                         </div>
-                    </c:forEach>
+                        <c:if test="${sessionScope.account != null}">
+                            <div>
+                                <a href="like?songID=${requestScope.song.songID}"><i class="far fa-heart fa-2x" style="color: white ;padding:10px"></i></a>
+                            </div>
+                        </c:if>
+                    </div>
                     <div class="body_songs">
-                        <!--                        <div class="body_song_icon play_button">
-                                                    <i class="fas fa-play-circle fa-5x" id="playlist_body_suffle" style="color: green;"></i>
-                                                    <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
-                                                    <i class="far fa-heart fa-2x" style="color: green;"></i>
-                                                    <i class="fas fa-ellipsis-h fa-2x"></i>
-                                                </div>-->
 
                         <div class="playlist_song">
                         </div>
@@ -163,7 +265,7 @@
 
                 <div class="footer_center">
                     <div class="control_bar">
-                        <i class="fa fa-random fa-2x" id="control_green"></i>
+
                         <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
                         <div class="play_button">
                             <i class="far fa-play-circle fa-5x " id="control_icon"></i>
@@ -172,19 +274,19 @@
 
 
                         <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
-                        <i class="fas fa-retweet fa-2x" id="control_green"></i>
+
                     </div>
                     <div class="progress-container">
                         <span id="start_time"></span>
                         <div class="progress-bar">
                             <div class="progress" id="progress"></div>
-                            <audio id="audio" src="http://localhost:8080/MusicStreamingWeb/music/Chillies.mp3"></audio>
+                            <audio id="audio" src=""></audio>
                         </div>
                         <span id="end_time"></span>
                     </div>
                 </div>
                 <div class="footer_right">
-                    <i class="fas fa-list-ul fa-2x"></i>
+
                     <div class="volume_control">
                         <i id="volume" class="fas fa-volume-up fa-2x"></i>
                         <i id="volume_mute" class="fas fa-volume-mute fa-2x changesound"></i>
@@ -252,6 +354,7 @@
             isRepeat: false,
             songs: [
                 {
+                    id: '${requestScope.song.songID}',
                     name: '${requestScope.song.name}',
                     singer: '${requestScope.song.artist}',
                     path: '${requestScope.song.uri}',
@@ -267,6 +370,7 @@
             <img class="songRow_album" src="\${song.image}" />
                 <div class="songRow_info" style="width: 80%;">
                    <h1>\${song.name}</h1>
+                   <div style:"padding-right: 10px">Like: ${song.likeCount}</div>
                 </div>
                 <div class="loader \${index == this.currentIndex ? 'playing' : ''}" >
                     <span class="stroke"></span>
@@ -282,7 +386,9 @@
                     <span class="tooltiptext">
                         <p id="my_share" onclick="myFunction()"><i class="fas fa-share-alt" ></i> Share</p>
                         <p><i class="fas fa-arrow-alt-circle-down"></i><a target="_blank" href="\${song.path}" download=""> Download</a></p>  
-                        <p><i class="fab fa-stack-overflow"></i> Add to playlist</p>
+        <c:forEach var="p" items="${requestScope.listP}">
+                        <p><i class="fab fa-stack-overflow"></i><a href="addSong?listID=${p.listID}&&songID=\${song.id}">${p.listName}</a></p>
+        </c:forEach>
                     </span>
                 </i>
         </div>

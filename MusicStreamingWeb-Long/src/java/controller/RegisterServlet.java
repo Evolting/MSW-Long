@@ -1,6 +1,7 @@
 package controller;
 
 import dal.AccountDAO;
+import dal.PlaylistDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -91,6 +92,8 @@ public class RegisterServlet extends HttpServlet {
             } else {
                 db.create(new Account(u, p, "user"));
                 udb.addUserInfo(new User(u, name, email, "normal"));
+                PlaylistDAO pdb = new PlaylistDAO();
+                pdb.createList(u, "My Favorite", "When you like asong, it's added here");
                 response.sendRedirect("Login.jsp");
             }
         }

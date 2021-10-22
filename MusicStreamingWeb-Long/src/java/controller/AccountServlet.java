@@ -36,7 +36,7 @@ public class AccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AccountServlet</title>");            
+            out.println("<title>Servlet AccountServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AccountServlet at " + request.getContextPath() + "</h1>");
@@ -59,11 +59,17 @@ public class AccountServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        UserDAO adb = new UserDAO();
-        User cus = adb.getCustomerInfo(acc);
-        
-        request.setAttribute("user", cus);
-        request.getRequestDispatcher("Account.jsp").forward(request, response);
+        if (acc == null) {
+            response.sendRedirect("login");
+        } else {
+            UserDAO adb = new UserDAO();
+            User cus = adb.getCustomerInfo(acc);
+
+            request.setAttribute("current", "account");
+            request.setAttribute("user", cus);
+
+            request.getRequestDispatcher("Account.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -77,19 +83,26 @@ public class AccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         PrintWriter out = response.getWriter();
-//        out.print("Change things");
-        
+
         UserDAO cdb = new UserDAO();
         AccountDAO adb = new AccountDAO();
         String username = request.getParameter("username");
         String newpass = request.getParameter("password");
         String newmail = request.getParameter("email");
         String fullname = request.getParameter("fullname");
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        User cus = (User) session.getAttribute("user");
 
         cdb.updateUser(fullname, newmail, username);
         adb.updateAccount(username, newpass);
+        acc = new Account(username, newpass, acc.getRole());
+        cus = new User(username, fullname, newmail, cus.getStatus());
+
+        session.setAttribute("user", cus);
+        session.setAttribute("account", acc);
         response.sendRedirect("account");
     }
 

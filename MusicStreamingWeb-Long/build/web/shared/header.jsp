@@ -81,16 +81,25 @@
                     <!-- Site menu -->
                     <ul>
                         <li>
-                            <form action="search">
-                                <div class="sample two">
+                            <form action="search" style="display: inline-flex">
+                                <div class="sample two" >
                                     <input class="search" type="search" name="query" placeholder="Search">
                                     <button type="submit" class="btn btn-search fa fa-search"></button>
                                 </div>
+                                <span>
+                                    <select name="type" id="type" style="width: 70px; padding: 0">
+                                        <option value="song">Song</option>
+                                        <option value="artist">Artist</option>
+                                    </select>
+                                </span>
                             </form>
                         </li>
                         <li><a href="#">Premium</a></li>
                         <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy</a></li>
+                        <li><a href="https://webcache.googleusercontent.com/search?q=cache:zz9lg7qXuF4J:https://www.cse.msu.edu/~cse435/Handouts/SRSExample-webapp.doc+&cd=2&hl=vi&ct=clnk&gl=vn" target="_blank">
+                                Privacy
+                            </a>
+                        </li>
                         <li role="separator"></li>
                     </ul>
 

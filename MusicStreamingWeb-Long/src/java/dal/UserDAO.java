@@ -43,7 +43,7 @@ public class UserDAO extends DBContext {
 
         return null;
     }
-    
+
     public void updateUser(String fullname, String newmail, String username) {
         String sql = "UPDATE dbo.[user] SET fullname = ? , email = ? WHERE username = ? ";
         try {
@@ -51,6 +51,28 @@ public class UserDAO extends DBContext {
             st.setString(1, fullname);
             st.setString(2, newmail);
             st.setString(3, username);
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void upgrade(String username) {
+        String sql = "update [user] set status = 'premium' where username = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, username);
+            st.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void downgrade(String username) {
+        String sql = "update [user] set status = 'normal' where username = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, username);
             st.executeQuery();
         } catch (SQLException e) {
             System.out.println(e);

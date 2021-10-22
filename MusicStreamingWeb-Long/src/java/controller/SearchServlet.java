@@ -5,7 +5,8 @@
  */
 package controller;
 
-import dal.CategoryDAO;
+import dal.ArtistDAO;
+import dal.PlaylistDAO;
 import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
+import javax.servlet.http.HttpSession;
+import model.Account;
+import model.Playlist;
+import model.Singer;
 import model.Song;
 
 /**
@@ -61,23 +65,37 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         String query = request.getParameter("query");
-        request.setAttribute("query", query);
-        if (query == "") {
-            CategoryDAO cdb = new CategoryDAO();
-            List<Category> c = cdb.getAllCategory();
-            request.setAttribute("clist", c);
-        } else {
-            SongDAO sdb = new SongDAO();
-            List<Song> result = sdb.getSongByName(query);
-            request.setAttribute("result", result);
+        String type = request.getParameter("type");
+        HttpSession session = request.getSession();
+        
+        // nếu đã đăng nhập thì lấy ra list playlist của user đó lên
+        if (session.getAttribute("account") != null) {
+            Account a = (Account) session.getAttribute("account");
+            PlaylistDAO listDAO = new PlaylistDAO();
+            List<Playlist> listPlay = listDAO.getAllList(a.getUsername());
+            request.setAttribute("listP", listPlay);
         }
 
-//        PrintWriter out = response.getWriter();
-//        out.print(query+" to the search JSP");
-//        for (int i = 0; i < result.size(); i++) {
-//            out.println(i+" "+result.get(i));
-//        }
+        if (query == null || query.length() == 0) {
+            String message = "Nothing yet! Enter your query and click the Search button";
+            request.setAttribute("error", message);
+        } else {
+            if (type.equals("song")) {
+                SongDAO sdb = new SongDAO();
+                List<Song> slist = sdb.getSongByName(query);
+                request.setAttribute("slist", slist);
+            } else if (type.equals("artist")) {
+                ArtistDAO adb = new ArtistDAO();
+                List<Singer> alist = adb.getSingerByName(query);
+                request.setAttribute("alist", alist);
+            }
+        }
+
+        request.setAttribute("query", query);
+        request.setAttribute("type", type);
+        request.setAttribute("currentPage", "Search");
         request.getRequestDispatcher("Search.jsp").forward(request, response);
     }
 
@@ -92,7 +110,8 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setAttribute("currentPage", "Search");
+        request.getRequestDispatcher("Search.jsp").forward(request, response);
     }
 
     /**

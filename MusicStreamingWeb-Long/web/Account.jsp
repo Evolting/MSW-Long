@@ -32,6 +32,10 @@
                     return false;
                 }
             }
+            
+            function thisF(){
+                alert("Asfasfaf");
+            }
         </script>
         <title>Account</title>
     </head>
@@ -42,44 +46,12 @@
 
         <div class="player">
             <div class="player_body">
-                <div class="side_bar_home">
-                    <img style="width: 70px;border-radius:50%;margin-left:32%; margin-bottom:20px"
-                         src="https://www.w3schools.com/w3images/avatar5.png" alt="">
-                    <div class="sidebar_option">
-                        <i class="fas fa-home"></i>
-                        <a href="profile"><p>Profile Overview</p></a>
-                    </div>
-                    <div class="sidebar_option sidebar_active">
-                        <i class="fas fa-pencil-alt"></i>
-                        <a href="account"><p>Edit profile</p></a>
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-podcast"></i>
-                        <p>
-                            Manage playlist
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-bell"></i>
-                        <p>
-                            Manage Notification
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i>
-                        <p>
-                            Contract information
-                        </p>
-
-                    </div>
-                </div>
+                <%@include file="shared/sidebarAccount.jsp" %>
                 <div class="colection_body">
                     <div class="collection_header">
                         <h1>Profile Editing</h1>
                     </div>
-                    <form action="account" method="post" style="margin: 20px 50px;">
+                    <form action="account" onsubmit="return check()" method="post" style="margin: 20px 50px;">
                         <h2 >Username</h2>
                         <input type="text" class="form-control" name="username" value="${requestScope.user.username}" readonly>
                         <h2 >Password</h2>
@@ -92,7 +64,7 @@
                         <small id="emailHelp" class="form-text text-muted">Chúng tôi sẽ không chia sẻ thông tin này với bất kỳ ai</small>
                         <div style="display: flex; justify-content:flex-end">
                             <button class="cancel" style="background-color: white;color:black"><a href="home">Cancel</a></button>
-                            <button class="submit" onsubmit="return check()" type="submit">Save</button>
+                            <button class="submit" type="submit">Save</button>
                         </div>
                     </form>
 

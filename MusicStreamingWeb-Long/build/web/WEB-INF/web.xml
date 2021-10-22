@@ -17,10 +17,6 @@
         <servlet-class>controller.ProfileServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchServlet</servlet-name>
-        <servlet-class>controller.SearchServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CloudinaryServlet</servlet-name>
         <servlet-class>controller.CloudinaryServlet</servlet-class>
     </servlet>
@@ -37,12 +33,64 @@
         <servlet-class>controller.AccountServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchAjaxServlet</servlet-name>
-        <servlet-class>controller.SearchAjaxServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>controller.IndexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaylistServlet</servlet-name>
+        <servlet-class>controller.PlaylistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>controller.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ContractServlet</servlet-name>
+        <servlet-class>controller.ContractServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewContractServlet</servlet-name>
+        <servlet-class>controller.NewContractServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>controller.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>vnpay_return</servlet-name>
+        <servlet-class>controller.vnpay_return</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArtistServlet</servlet-name>
+        <servlet-class>controller.ArtistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSongServlet</servlet-name>
+        <servlet-class>controller.AddSongServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteListServlet</servlet-name>
+        <servlet-class>controller.DeleteListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LikeServlet</servlet-name>
+        <servlet-class>controller.LikeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewListServlet</servlet-name>
+        <servlet-class>controller.NewListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListFormServlet</servlet-name>
+        <servlet-class>controller.ListFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveSongServlet</servlet-name>
+        <servlet-class>controller.RemoveSongServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>controller.SearchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
@@ -61,10 +109,6 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CloudinaryServlet</servlet-name>
         <url-pattern>/cloudinary</url-pattern>
     </servlet-mapping>
@@ -81,12 +125,64 @@
         <url-pattern>/account</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchAjaxServlet</servlet-name>
-        <url-pattern>/searchAjax</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaylistServlet</servlet-name>
+        <url-pattern>/playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContractServlet</servlet-name>
+        <url-pattern>/contract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewContractServlet</servlet-name>
+        <url-pattern>/newContract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/vnpayajax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vnpay_return</servlet-name>
+        <url-pattern>/return</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtistServlet</servlet-name>
+        <url-pattern>/artist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSongServlet</servlet-name>
+        <url-pattern>/addSong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteListServlet</servlet-name>
+        <url-pattern>/deleteList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LikeServlet</servlet-name>
+        <url-pattern>/like</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewListServlet</servlet-name>
+        <url-pattern>/newlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListFormServlet</servlet-name>
+        <url-pattern>/listForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveSongServlet</servlet-name>
+        <url-pattern>/removeSong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -62,13 +62,16 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account acc = (Account) session.getAttribute("account");
-        UserDAO adb = new UserDAO();
-        User cus = adb.getCustomerInfo(acc);
-//         PrintWriter out = response.getWriter();
-//         out.print(cus);
+        if (acc == null) {
+            response.sendRedirect("login");
+        } else {
+            User cus = (User) session.getAttribute("user");
 
-        request.setAttribute("user", cus);
-        request.getRequestDispatcher("Profile.jsp").forward(request, response);
+            request.setAttribute("current", "profile");
+            request.setAttribute("user", cus);
+
+            request.getRequestDispatcher("Profile.jsp").forward(request, response);
+        }
     }
 
     /**

@@ -31,82 +31,9 @@
         <title>Open</title>
     </head>
     <body>
-
         <div class="player">
             <div class="player_body">
-                <div class="side_bar_home">
-                    <img style="width: 70px;" src="img/logo.png" alt="">
-                    <div class="sidebar_option">
-                        <i class="fas fa-home" style="color: white"></i> 
-                        <p>
-                            <a href="home" style="color: white">Home</a>
-                        </p>
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-search"></i>
-                        <p>
-                            <a href="search?query=">Search</a>
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-swatchbook"></i> <p>
-                            Your Library
-                        </p>
-
-                    </div>
-                    <br />
-                    <strong class="sidebar_tittle"> PLAYLIST </strong>
-                    <hr/>
-                    <div class="sidebar_option">
-                        <i class="fas fa-plus-square"></i> <p>
-                            Add new playlist
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i> <p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i><p>
-                            Hip hop
-                        </p>
-
-                    </div>
-                </div>
+                <%@include file="shared/sidebar.jsp" %>
                 <div class="colection_body" style="background: linear-gradient(rgb(187, 81, 81),black);">
                     <div class="collection_header">
                         <div class="header_left">
@@ -150,88 +77,57 @@
 
 
                     <h1 style="font-size:xx-large;padding:20px 0">Hope you enjoy<c:if test="${sessionScope.account != null}">, ${sessionScope.account.username}</c:if></h1>
-
-                    <div class="boxes">
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
+                        <h1 style="font-size:x-large;padding:20px 0">What's Hot?</h1>
+                        <div class="large-boxes" style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
+                        <c:forEach items="${requestScope.top8}" var="song">
+                            <div class="large-boxes_box">
+                                <img src="${song.img}" alt="">
+                                <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
+                                <p style="font-size: small; font-weight: normal">
+                                    <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                        <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                    </c:forEach>
+                                </p>
+                                <p style="font-size: smaller; font-weight: normal">Like: ${song.likeCount}</p>
                             </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                            </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                            </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                            </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                            </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="box_image">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5eb6ad57a3cb26ae3ffd0f28f22/2/vi/default" alt="">
-                            </div>
-                            <div class="box_tittle">
-                                Album suggest
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                     <div class="middle_section">
-                        <h1 style="font-size:x-large;padding:20px 0">Trending Podcast</h1>
-                        <div class="large-boxes">
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
-                            <div class="large-boxes_box">
-                                <img src="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebcdce7620dc940db079bf4952/1/vi/default" alt="">
-                                <div class="large-boxes_tittle">Name Podcast</div>
-                            </div>
+                        <h1 style="font-size:x-large;padding:20px 0">What's New?</h1>
+                        <div class="large-boxes" style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
+                            <c:forEach items="${requestScope.latest}" var="song">
+                                <div class="large-boxes_box">
+                                    <img src="${song.img}" alt="">
+                                    <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
+                                    <p style="font-size: small; font-weight: normal">
+                                        <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                        </c:forEach>
+                                    </p>
+                                </div>
+                            </c:forEach>
                         </div>
 
                     </div>
-                    <h1 style="font-size:x-large;padding:20px 0">Trending Podcast</h1>
+                    <h1 style="font-size:x-large;padding:20px 0">Latest From Your Favorite Artist</h1>
+                    <div class="boxes">
+                        <c:forEach var="song" items="${requestScope.top8}">
+                            <div class="box">
+                                <div class="box_image">
+                                    <img src="${song.img}" alt="">
+                                </div>
+                                <div class="box_tittle">
+                                    <a href="player?songID=${song.songID}">${song.name}</a>
+                                    <p style="font-size: smaller; font-weight: normal">
+                                        <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                        </c:forEach>
+                                    </p>
+                                    <p style="font-size: smaller; font-weight: normal">Like: ${song.likeCount}</p>
+                                </div> 
+                            </div>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
             <!--            <div class="player_footer">

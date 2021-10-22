@@ -343,9 +343,7 @@ i:hover{
     justify-content: space-around;
     cursor: pointer;
 }
-audio{
-    display: none;
-}
+
 .my.pause{
     display: none;
 }
