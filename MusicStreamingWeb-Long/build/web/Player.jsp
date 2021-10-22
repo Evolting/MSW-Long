@@ -45,46 +45,7 @@
         </div>
         <div class="player">
             <div class="player_body">
-                <div class="side_bar_home">
-                    <img style="width: 70px;" src="img/logo.png" alt="">
-                    <div class="sidebar_option">
-                        <i class="fas fa-home"></i>
-                        <p>
-                            <a href="home">Home</a>
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-search"></i>
-                        <p>
-                            <a href="search">Search</a>
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-swatchbook"></i>
-                        <p>
-                            Your Library
-                        </p>
-
-                    </div>
-                    <br />
-                    <strong class="sidebar_tittle"> PLAYLIST </strong>
-                    <hr />
-                    <div class="sidebar_option">
-                        <i class="fas fa-plus-square"></i>
-                        <p>
-                            Add new playlist
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i>
-                        <p>
-                            Hip hop
-                        </p>
-                    </div>
-                </div>
+                <%@include file="shared/sidebar.jsp" %>
                 <div class="colection_body">
                     <div class="collection_header">
                         <div class="header_left">
@@ -132,7 +93,7 @@
                             <img src="${singer.img}" />
                             <div class="body_info_text">
                                 <!--                                <strong></strong>-->
-                                <a href="#"><h2>${singer.name}</h2></a>
+                                <a href="artist?aid=${singer.singerID}"><h2>${singer.name}</h2></a>
                                 <p>${singer.info}</p>
                             </div>
                         </div>

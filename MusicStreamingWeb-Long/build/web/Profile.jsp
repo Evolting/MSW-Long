@@ -27,39 +27,7 @@
 
         <div class="player">
             <div class="player_body">
-                <div class="side_bar_home">
-                    <img style="width: 70px;border-radius:50%;margin-left:32%; margin-bottom:20px"
-                         src="https://www.w3schools.com/w3images/avatar5.png" alt="">
-                    <div class="sidebar_option  sidebar_active">
-                        <i class="fas fa-home"></i>
-                        <a href="profile"><p>Profile Overview</p></a>
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-pencil-alt"></i>
-                        <a href="account"><p>Edit profile</p></a>
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-podcast"></i>
-                        <p>
-                            Manage playlist
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-bell"></i>
-                        <p>
-                            Manage Notification
-                        </p>
-
-                    </div>
-                    <div class="sidebar_option">
-                        <i class="fas fa-record-vinyl"></i>
-                        <p>
-                            Contract information
-                        </p>
-
-                    </div>
-                </div>
+                <%@include file="shared/sidebarAccount.jsp" %>
                 <div class="colection_body">
                     <div class="collection_header">
                         <h1>Profile Overview</h1>

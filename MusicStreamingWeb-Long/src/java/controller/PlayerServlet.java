@@ -5,13 +5,18 @@
  */
 package controller;
 
+import dal.PlaylistDAO;
 import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
+import model.Playlist;
 import model.Song;
 
 /**
@@ -37,7 +42,7 @@ public class PlayerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PlayerServlet</title>");            
+            out.println("<title>Servlet PlayerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet PlayerServlet at " + request.getContextPath() + "</h1>");
@@ -59,13 +64,19 @@ public class PlayerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int songID = Integer.parseInt(request.getParameter("songID"));
-        
+
         SongDAO sdb = new SongDAO();
         Song s = sdb.getSongByID(songID);
-        
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        if (acc != null) {
+            PlaylistDAO playDAO = new PlaylistDAO();
+            List<Playlist> listP = playDAO.getAllList(acc.getUsername());
+            request.setAttribute("listP", listP);
+        }
         request.setAttribute("song", s);
         request.getRequestDispatcher("Player.jsp").forward(request, response);
-        
+
 //        PrintWriter out = response.getWriter();
 //        out.print(s);
     }

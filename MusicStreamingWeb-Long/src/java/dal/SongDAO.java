@@ -39,7 +39,7 @@ public class SongDAO extends DBContext {
                 result.add(s);
             }
         } catch (SQLException e) {
-            System.out.println(e+" this");
+            System.out.println(e + " this");
         }
 
         for (int i = 0; i < result.size(); i++) {
@@ -60,7 +60,207 @@ public class SongDAO extends DBContext {
                     singer.add(sg);
                 }
             } catch (SQLException e) {
-                System.out.println(e+" that");
+                System.out.println(e + " that");
+            }
+            result.get(i).setArtist(singer);
+        }
+
+        return result;
+    }
+
+    public List<Song> getSongOfArtist(int aid) {
+        List<Song> result = new ArrayList<>();
+        String sql = "select top 4 song.songID, song.name, song.img, uri, likeCount, categoryName, addDate\n"
+                + "from song inner join genre on song.songID = genre.songID \n"
+                + "inner join category on genre.categoryID = category.categoryID\n"
+                + "inner join songOf on song.songID = songOf.songID\n"
+                + "inner join singer on songOf.singerID = singer.singerID\n"
+                + "where singer.singerID = ? \n"
+                + "order by addDate desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, aid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Song s = new Song();
+                s.setSongID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setGenre(rs.getString(6));
+                s.setImg(rs.getString(3));
+                s.setUri(rs.getString(4));
+                s.setlikeCount(rs.getInt(5));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e + " this");
+        }
+
+        for (int i = 0; i < result.size(); i++) {
+            List<Singer> singer = new ArrayList<>();
+            sql = "select songID, singer.singerID, name, info, img \n"
+                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                    + "where songID = ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, result.get(i).getSongID());
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Singer sg = new Singer();
+                    sg.setSingerID(rs.getInt(2));
+                    sg.setName(rs.getString(3));
+                    sg.setInfo(rs.getString(4));
+                    sg.setImg(rs.getString(5));
+                    singer.add(sg);
+                }
+            } catch (SQLException e) {
+                System.out.println(e + " that");
+            }
+            result.get(i).setArtist(singer);
+        }
+        return result;
+    }
+
+    public List<Song> getLatest() {
+        List<Song> result = new ArrayList<>();
+        String sql = "select top 6 song.songID, name, song.img, uri, likeCount, categoryName, addDate\n"
+                + "from song inner join genre on song.songID = genre.songID \n"
+                + "inner join category on genre.categoryID = category.categoryID\n"
+                + "order by addDate desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Song s = new Song();
+                s.setSongID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setGenre(rs.getString(6));
+                s.setImg(rs.getString(3));
+                s.setUri(rs.getString(4));
+                s.setlikeCount(rs.getInt(5));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e + " this");
+        }
+
+        for (int i = 0; i < result.size(); i++) {
+            List<Singer> singer = new ArrayList<>();
+            sql = "select songID, singer.singerID, name, info, img \n"
+                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                    + "where songID = ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, result.get(i).getSongID());
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Singer sg = new Singer();
+                    sg.setSingerID(rs.getInt(2));
+                    sg.setName(rs.getString(3));
+                    sg.setInfo(rs.getString(4));
+                    sg.setImg(rs.getString(5));
+                    singer.add(sg);
+                }
+            } catch (SQLException e) {
+                System.out.println(e + " that");
+            }
+            result.get(i).setArtist(singer);
+        }
+
+        return result;
+    }
+
+    public List<Song> getMostLike() {
+        List<Song> result = new ArrayList<>();
+        String sql = "select top 6 song.songID, name, song.img, uri, likeCount, categoryName\n"
+                + "from song inner join genre on song.songID = genre.songID \n"
+                + "inner join category on genre.categoryID = category.categoryID\n"
+                + "order by likeCount desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Song s = new Song();
+                s.setSongID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setGenre(rs.getString(6));
+                s.setImg(rs.getString(3));
+                s.setUri(rs.getString(4));
+                s.setlikeCount(rs.getInt(5));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e + " this");
+        }
+
+        for (int i = 0; i < result.size(); i++) {
+            List<Singer> singer = new ArrayList<>();
+            sql = "select songID, singer.singerID, name, info, img \n"
+                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                    + "where songID = ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, result.get(i).getSongID());
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Singer sg = new Singer();
+                    sg.setSingerID(rs.getInt(2));
+                    sg.setName(rs.getString(3));
+                    sg.setInfo(rs.getString(4));
+                    sg.setImg(rs.getString(5));
+                    singer.add(sg);
+                }
+            } catch (SQLException e) {
+                System.out.println(e + " that");
+            }
+            result.get(i).setArtist(singer);
+        }
+
+        return result;
+    }
+
+    public List<Song> getSongByCategory(int categoryID) {
+        List<Song> result = new ArrayList<>();
+        String sql = "select song.songID, name, song.img, uri, likeCount, categoryName, addDate\n"
+                + "from song inner join genre on song.songID = genre.songID \n"
+                + "inner join category on genre.categoryID = category.categoryID\n"
+                + "where category.categoryID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, categoryID);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Song s = new Song();
+                s.setSongID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setGenre(rs.getString(6));
+                s.setImg(rs.getString(3));
+                s.setUri(rs.getString(4));
+                s.setlikeCount(rs.getInt(5));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e + " this");
+        }
+
+        for (int i = 0; i < result.size(); i++) {
+            List<Singer> singer = new ArrayList<>();
+            sql = "select songID, singer.singerID, name, info, img \n"
+                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                    + "where songID = ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, result.get(i).getSongID());
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Singer sg = new Singer();
+                    sg.setSingerID(rs.getInt(2));
+                    sg.setName(rs.getString(3));
+                    sg.setInfo(rs.getString(4));
+                    sg.setImg(rs.getString(5));
+                    singer.add(sg);
+                }
+            } catch (SQLException e) {
+                System.out.println(e + " that");
             }
             result.get(i).setArtist(singer);
         }
@@ -87,12 +287,12 @@ public class SongDAO extends DBContext {
                 s.setlikeCount(rs.getInt(5));
             }
         } catch (SQLException e) {
-            System.out.println(e+" here");
+            System.out.println(e + " here");
         }
 
         List<Singer> singer = new ArrayList<>();
         String sql2 = "select songID, singer.singerID, name, info, img \n"
-                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
                 + "where songID = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql2);
@@ -115,10 +315,10 @@ public class SongDAO extends DBContext {
 
     public static void main(String[] args) {
         SongDAO sdb = new SongDAO();
-        List<Song> list = sdb.getSongByName("e");
+        List<Song> list = sdb.getSongByCategory(2);
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }
     }
-    
+
 }

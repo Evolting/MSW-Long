@@ -6,6 +6,7 @@
 package controller;
 
 import dal.CategoryDAO;
+import dal.PlaylistDAO;
 import dal.SongDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Category;
+import model.Playlist;
 import model.Song;
 
 /**
@@ -73,11 +77,22 @@ public class SearchServlet extends HttpServlet {
             request.setAttribute("result", result);
         }
 
+        HttpSession session = request.getSession();
+        if (session.getAttribute("account") != null) {
+            Account a = (Account) session.getAttribute("account");
+            PlaylistDAO listDAO = new PlaylistDAO();
+            List<Playlist> listPlay = listDAO.getAllList(a.getUsername());
+            request.setAttribute("listP", listPlay);
+        }
+
 //        PrintWriter out = response.getWriter();
 //        out.print(query+" to the search JSP");
 //        for (int i = 0; i < result.size(); i++) {
 //            out.println(i+" "+result.get(i));
 //        }
+
+        request.setAttribute("before", "search");
+        request.setAttribute("currentPage", "Search");
         request.getRequestDispatcher("Search.jsp").forward(request, response);
     }
 

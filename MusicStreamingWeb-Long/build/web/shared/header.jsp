@@ -90,7 +90,10 @@
                         </li>
                         <li><a href="#">Premium</a></li>
                         <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy</a></li>
+                        <li><a href="https://webcache.googleusercontent.com/search?q=cache:zz9lg7qXuF4J:https://www.cse.msu.edu/~cse435/Handouts/SRSExample-webapp.doc+&cd=2&hl=vi&ct=clnk&gl=vn" target="_blank">
+                                Privacy
+                            </a>
+                        </li>
                         <li role="separator"></li>
                     </ul>
 

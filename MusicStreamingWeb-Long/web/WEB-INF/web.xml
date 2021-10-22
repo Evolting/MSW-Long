@@ -44,6 +44,34 @@
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>controller.IndexServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlaylistServlet</servlet-name>
+        <servlet-class>controller.PlaylistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>controller.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ContractServlet</servlet-name>
+        <servlet-class>controller.ContractServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewContractServlet</servlet-name>
+        <servlet-class>controller.NewContractServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>controller.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>vnpay_return</servlet-name>
+        <servlet-class>controller.vnpay_return</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArtistServlet</servlet-name>
+        <servlet-class>controller.ArtistServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -87,6 +115,34 @@
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaylistServlet</servlet-name>
+        <url-pattern>/playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContractServlet</servlet-name>
+        <url-pattern>/contract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewContractServlet</servlet-name>
+        <url-pattern>/newContract</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/vnpayajax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vnpay_return</servlet-name>
+        <url-pattern>/return</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtistServlet</servlet-name>
+        <url-pattern>/artist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

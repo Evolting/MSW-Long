@@ -56,53 +56,20 @@
     <body>
 
         <div class="player_body">
-            <div class="side_bar_home">
-                <img style="width: 70px;" src="img/logo.png" alt="">
-                <div class="sidebar_option">
-                    <i class="fas fa-home"></i>
-                    <p>
-                        <a href="home">Home</a>
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-search" style="color: white"></i>
-                    <p>
-                        <a href="search?query=" style="color: white">Search</a>
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-swatchbook"></i>
-                    <p>
-                        Your Library
-                    </p>
-
-                </div>
-                <br />
-                <strong class="sidebar_tittle"> PLAYLIST </strong>
-                <hr />
-                <div class="sidebar_option">
-                    <i class="fas fa-plus-square"></i>
-                    <p>
-                        Add new playlist
-                    </p>
-
-                </div>
-                <div class="sidebar_option">
-                    <i class="fas fa-record-vinyl"></i>
-                    <p>
-                        Hip hop
-                    </p>
-
-                </div>
-            </div>
+            <%@include file="shared/sidebar.jsp" %>
 
             <div class="colection_body" style="background: linear-gradient(rgb(161, 86, 149),black);">
                 <div class="collection_header" style="margin-bottom: 30px;">
-                    <div class="header_left" style="background-color: white;color:gray;border-radius:30px;display:flex;align-items:center;width:90%;padding:10px">
-                        <i class="fas fa-search fa-2x"></i>
-                        <input type="text" placeholder="Search for Artists,Songs, or Playlist" size="130px" style="border: none;" oninput="searchByName(this)" value="${requestScope.query}" id="myInput" name="query">
+                    <div class="header_left" style="${requestScope.before == 'search' ? 'background-color: white;':''} color:gray;border-radius:30px;display:flex;align-items:center;width:90%;padding:10px">
+                        <c:if test="${requestScope.before == 'search'}">
+                            <i class="fas fa-search fa-2x"></i>
+                            <input type="text" placeholder="Search for Artists,Songs, or Playlist" size="130px" style="border: none;" oninput="searchByName(this)" value="${requestScope.query}" id="myInput" name="query">                            
+                        </c:if>
+                        <c:if test="${requestScope.before == 'category'}">
+                            <a href="javascript: history.go(-1)">
+                                <i class="fas fa-chevron-circle-left fa-3x" style="color:black"></i>
+                            </a>
+                        </c:if>
                     </div>
                     <div class="header_right">
                         <c:if test="${sessionScope.account==null}" >
@@ -144,33 +111,57 @@
                         outline: none;
                     }
                 </style>
-                <h1 style="font-size:xx-large;padding:20px 0">Browse all</h1>
-                <div class="boxes" id="loadAjax">
-                    <c:if test="${requestScope.query != '' }">
-                        <c:forEach items="${requestScope.result}" var="song">
-                            <div class="box">
-                                <div class="box_image">
-                                    <img src="${song.img}" alt="">
+                <!--                <div>
+                                    <select name="type" id="type">
+                                        <option value="song">Song</option>
+                                        <option value="artist">Artist</option>
+                                    </select>
+                                </div>-->
+                <c:if test="${requestScope.before == 'search'}">
+                    <h1 style="font-size:xx-large;padding:20px 0">Browse all</h1>
+                    <div class="boxes" id="loadAjax">
+                        <c:if test="${requestScope.query != '' }">
+                            <c:forEach items="${requestScope.result}" var="song">
+                                <div class="box">
+                                    <div class="box_image">
+                                        <img src="${song.img}" alt="">
+                                    </div>
+                                    <div class="box_tittle">
+                                        <a href="player?songID=${song.songID}">${song.name}</a>
+                                        <p style="font-size: smaller; font-weight: normal">
+                                            <c:forEach items="${song.artist}" var="sg" varStatus="loop">
+                                                <a href=#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                            </c:forEach>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="box_tittle">
-                                    <a href="player?songID=${song.songID}">${song.name}</a>
-                                    <p style="font-size: smaller; font-weight: normal">
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${requestScope.query == '' }">
+                            <c:forEach items="${requestScope.clist}" var="category">
+                                <div class="genres" id="genres" style="width: 250px; margin: 20px;">
+                                    <a href="category?categoryID=${category.categoryID}"><img src="${category.img}" alt="" style="width: 250px;"></a>
+                                </div>
+                            </c:forEach>
+                        </c:if>
+                    </div>
+                </c:if>
+                <c:if test="${requestScope.before == 'category'}">
+                    <h1 style="font-size:xx-large;padding:20px 0">Category</h1>
+                    <div style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
+                        <c:forEach items="${requestScope.list}" var="song">
+                            <div class="large-boxes_box">
+                                    <img src="${song.img}" alt="">
+                                    <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
+                                    <p style="font-size: small; font-weight: normal">
                                         <c:forEach items="${song.artist}" var="sg" varStatus="loop">
                                             <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                         </c:forEach>
                                     </p>
-                                </div>
-                            </div>
+                            </div>                                         
                         </c:forEach>
-                    </c:if>
-                    <c:if test="${requestScope.query == '' }">
-                        <c:forEach items="${requestScope.clist}" var="category">
-                            <div class="genres" id="genres" style="width: 250px; margin: 20px;">
-                                <a href="#"><img src="${category.img}" alt="" style="width: 250px;"></a>
-                            </div>
-                        </c:forEach>
-                    </c:if>
-                </div>
+                    </div>
+                </c:if>
             </div>
 
         </div>
