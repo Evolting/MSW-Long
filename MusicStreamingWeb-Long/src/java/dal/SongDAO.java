@@ -312,10 +312,68 @@ public class SongDAO extends DBContext {
         s.setArtist(singer);
         return s;
     }
+    
+    public List<Song> getSongsCRUD(){
+        
+        List<Song> result = new ArrayList<>();
+        
+        String sql = "select song.songID, name, song.img, uri, likeCount, categoryName\n"
+                + "from song inner join genre on song.songID = genre.songID \n"
+                + "inner join category on genre.categoryID = category.categoryID";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Song s = new Song();
+                s.setSongID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setGenre(rs.getString(6));
+                s.setImg(rs.getString(3));
+                s.setUri(rs.getString(4));
+                s.setlikeCount(rs.getInt(5));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e + " this");
+        }
+        
+        for (int i = 0; i < result.size(); i++) {
+            List<Singer> singer = new ArrayList<>();
+            sql = "select songID, singer.singerID, name, info, img \n"
+                    + "from songOf inner join singer on songOf.singerID = singer.singerID \n"
+                    + "where songID = ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, result.get(i).getSongID());
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Singer sg = new Singer();
+                    sg.setSingerID(rs.getInt(2));
+                    sg.setName(rs.getString(3));
+                    sg.setInfo(rs.getString(4));
+                    sg.setImg(rs.getString(5));
+                    singer.add(sg);
+                }
+            } catch (SQLException e) {
+                System.out.println(e + " that");
+            }
+            result.get(i).setArtist(singer);
+        }
+        
+        return result;
+    }
+    
+    public List<Song> getSongByPage(List<Song> list, int start, int end){
+        List<Song> t = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            t.add(list.get(i));
+        }
+        return t;
+    }
 
     public static void main(String[] args) {
         SongDAO sdb = new SongDAO();
-        List<Song> list = sdb.getSongByCategory(2);
+        List<Song> list = sdb.getSongsCRUD();
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i));
         }

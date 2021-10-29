@@ -92,6 +92,30 @@
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>controller.SearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadCRUDServlet</servlet-name>
+        <servlet-class>controller.SingerCRUDServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingerCRUDAddServlet</servlet-name>
+        <servlet-class>controller.SingerCRUDAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingerCRUDDeleteServlet</servlet-name>
+        <servlet-class>controller.SingerCRUDDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SingerCRUDUpdateServlet</servlet-name>
+        <servlet-class>controller.SingerCRUDUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MusicCRUDServlet</servlet-name>
+        <servlet-class>controller.MusicCRUDServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MusicCRUDAddServlet</servlet-name>
+        <servlet-class>controller.MusicCRUDAddServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -183,6 +207,30 @@
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCRUDServlet</servlet-name>
+        <url-pattern>/acrud</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingerCRUDAddServlet</servlet-name>
+        <url-pattern>/addsinger</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingerCRUDDeleteServlet</servlet-name>
+        <url-pattern>/delsinger</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SingerCRUDUpdateServlet</servlet-name>
+        <url-pattern>/upsinger</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MusicCRUDServlet</servlet-name>
+        <url-pattern>/mcrud</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MusicCRUDAddServlet</servlet-name>
+        <url-pattern>/addsong</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

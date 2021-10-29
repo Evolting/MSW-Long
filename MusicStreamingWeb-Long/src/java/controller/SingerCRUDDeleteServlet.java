@@ -1,24 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
-import dal.AccountDAO;
-import dal.ContractDAO;
-import dal.UserDAO;
+import dal.ArtistDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
-import model.Contract;
-import model.User;
 
 /**
  *
- * @author admin
+ * @author nvlon
  */
-public class LoginServlet extends HttpServlet {
+public class SingerCRUDDeleteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +36,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet SingerCRUDDeleteServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SingerCRUDDeleteServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +57,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -72,39 +71,14 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        AccountDAO db = new AccountDAO();
-        Account a = db.getAccount(username, password);
+        int singerID = Integer.parseInt(request.getParameter("id"));
+        ArtistDAO adb = new ArtistDAO();
         
-        // nếu tài khoản không tồn tại
-        if (a == null) {
-            request.setAttribute("error", "Tài khoản " + username + " không tồn tại");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } 
-        
-        
-        // nếu tồn tại tài khoản
-        else {
-            HttpSession session = request.getSession();
-            
-            // lấy data người dùng từ db
-            UserDAO adb = new UserDAO();
-            User cus = adb.getCustomerInfo(a);
-            session.setAttribute("user", cus);
-            
-            
-            // lấy data contract từ db
-            ContractDAO cdb = new ContractDAO();
-            Contract contract = cdb.getContractInfo(username);
-            session.setAttribute("contract", contract);
-            
-            
-            // lấy data về account đặt lên session
-            session.setAttribute("account", a);
-
-            response.sendRedirect("acrud");
+        PrintWriter out = response.getWriter();
+        if(adb.canDelete(singerID)){
+            adb.delSinger(singerID);
         }
+        response.sendRedirect("acrud");
     }
 
     /**

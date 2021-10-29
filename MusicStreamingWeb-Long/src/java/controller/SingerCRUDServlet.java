@@ -1,24 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
-import dal.AccountDAO;
-import dal.ContractDAO;
-import dal.UserDAO;
+import dal.ArtistDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Account;
-import model.Contract;
-import model.User;
+import model.Singer;
 
 /**
  *
- * @author admin
+ * @author nvlon
  */
-public class LoginServlet extends HttpServlet {
+public class SingerCRUDServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +41,10 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
+            out.println("<title>Servlet LoadCRUDServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoadCRUDServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,7 +62,51 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("account");
+        if (a == null) {
+            response.sendRedirect("login");
+        } else if (a.getRole().equals("admin")) {
+
+            // lấy ra list tổng
+            ArtistDAO sdb = new ArtistDAO();
+            String query = request.getParameter("query");
+            List<Singer> slist = new ArrayList<>();
+            if(query!=null){
+                slist = sdb.getSingerByName(query);
+                request.setAttribute("query", query);
+            }
+            else  slist = sdb.getSingersCRUD();
+
+            // numperPage là số item trên trang, numPage là số lượng trang. 
+            // ví dụ 100 item mà numperPage là 10 thì có 10 trang
+            int size = slist.size();
+            int numperPage = 5;
+            int numPage = size / numperPage + (size % numperPage == 0 ? 0 : 1);
+
+            // xác định xem page đang đi đến là page số mấy
+            String spage = request.getParameter("page");
+            int page;
+            if (spage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(spage);
+            }
+            int start, end;
+            start = (page - 1) * numperPage;
+            end = Math.min(size, page * numperPage);
+            List<Singer> result = sdb.getSingerByPage(slist, start, end);
+
+            request.setAttribute("num", numPage);
+            request.setAttribute("data", result);
+            request.setAttribute("page", page);
+            request.setAttribute("total", size);
+            request.setAttribute("display", numperPage);
+            request.getRequestDispatcher("ArtistCRUD.jsp").forward(request, response);
+        } else {
+            PrintWriter out = response.getWriter();
+            out.print("<h1>Access Denied!</h1>");
+        }
     }
 
     /**
@@ -72,39 +120,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        AccountDAO db = new AccountDAO();
-        Account a = db.getAccount(username, password);
-        
-        // nếu tài khoản không tồn tại
-        if (a == null) {
-            request.setAttribute("error", "Tài khoản " + username + " không tồn tại");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } 
-        
-        
-        // nếu tồn tại tài khoản
-        else {
-            HttpSession session = request.getSession();
-            
-            // lấy data người dùng từ db
-            UserDAO adb = new UserDAO();
-            User cus = adb.getCustomerInfo(a);
-            session.setAttribute("user", cus);
-            
-            
-            // lấy data contract từ db
-            ContractDAO cdb = new ContractDAO();
-            Contract contract = cdb.getContractInfo(username);
-            session.setAttribute("contract", contract);
-            
-            
-            // lấy data về account đặt lên session
-            session.setAttribute("account", a);
-
-            response.sendRedirect("acrud");
-        }
+        processRequest(request, response);
     }
 
     /**

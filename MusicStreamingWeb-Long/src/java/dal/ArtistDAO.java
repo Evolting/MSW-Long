@@ -66,8 +66,98 @@ public class ArtistDAO extends DBContext{
         return slist;
     }
     
+    public List<Singer> getSingersCRUD(){
+        
+        List<Singer> slist = new ArrayList<>();
+        
+        String sql = "select * from singer";
+        
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Singer s = new Singer();
+                s.setSingerID(rs.getInt(1));
+                s.setName(rs.getString(2));
+                s.setInfo(rs.getString(3));
+                s.setImg(rs.getString(4));
+                slist.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        return slist;
+    }
+    
+    public List<Singer> getSingerByPage(List<Singer> list, int start, int end){
+        List<Singer> t = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            t.add(list.get(i));
+        }
+        return t;
+    }
+    
+    public int addSinger(Singer singer){
+        int out = 0;
+        String sql = "insert into singer values (?, ?, ?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, singer.getName());
+            st.setString(2, singer.getInfo());
+            st.setString(3, singer.getImg());
+            out = st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return out;
+    }
+    
+    public boolean canDelete(int singerID){
+        String sql = "select * from songOf where singerID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, singerID);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return true;
+    }
+    
+    public int delSinger(int singerID){
+        int out = 0;
+        String sql = "delete from singer where singerID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, singerID);
+            out = st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return out;
+    }
+    
+    public int updateSinger(Singer singer){
+        int out = 0;
+        String sql = "update singer set name = ?, info = ?, img = ? where singerID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(4, singer.getSingerID());
+            st.setString(1, singer.getName());
+            st.setString(2, singer.getInfo());
+            st.setString(3, singer.getImg());
+            out = st.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return out;
+    }
+    
     public static void main(String[] args) {
         ArtistDAO adb = new ArtistDAO();
-        System.out.println(adb.getSingerByName("i"));
     }
 }

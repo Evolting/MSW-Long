@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author nvlon
@@ -58,6 +60,39 @@ public class Singer {
     @Override
     public String toString() {
         return "Singer{" + "singerID=" + singerID + ", name=" + name + ", info=" + info + ", img=" + img + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Singer other = (Singer) obj;
+        if (this.singerID != other.singerID) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.info, other.info)) {
+            return false;
+        }
+        if (!Objects.equals(this.img, other.img)) {
+            return false;
+        }
+        return true;
     }
     
 }

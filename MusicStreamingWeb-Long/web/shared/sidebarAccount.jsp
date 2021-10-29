@@ -33,24 +33,9 @@
                 <i class="fas fa-pencil-alt"></i>
                 <a href="account"><p>Edit profile</p></a>
             </div>
-            <div class="sidebar_option">
-                <i class="fas fa-podcast"></i>
-                <p>
-                    Manage playlist
-                </p>
-
-            </div>
-<!--            <div class="sidebar_option">
-                <i class="fas fa-bell"></i>
-                <p>
-                    Manage Notification
-                </p>
-
-            </div>-->
             <div class="sidebar_option ${requestScope.current == 'contract' ? 'sidebar_active':''}">
                 <i class="fas fa-record-vinyl"></i>
                 <a href="contract"><p>Contract information</p></a>
-
             </div>
         </div>
     </body>

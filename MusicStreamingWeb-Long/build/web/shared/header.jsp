@@ -112,6 +112,10 @@
                             <input type="checkbox" class="dropdown-menu-toggler" />
                             <div class="dropdown-menu">
                                 <ul> 
+                                    <c:if test="${sessionScope.account.role == 'admin'}">
+                                        <li><a href="#">Dashboard</a></li>
+                                        <li><a href="crud">Music CRUD</a></li>
+                                    </c:if>
                                     <li><a href="profile">Account</a></li>
                                     <li><a href="logout">Log out</a></li>
                                 </ul>
