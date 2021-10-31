@@ -61,10 +61,10 @@
                                 <h2><b>Music</b> Management</h2>
                             </div>
                             <div class="col-sm-6">
-                                <a href="#addEmployeeModal"class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Song</span></a>
+                                <a href="addsong"class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New Song</span></a>
                                 <form class="form-inline my-2 my-lg-0 float-right" action="mcrud">
                                     <input class="form-control mr-sm-2" type="text" name="page" value="1" hidden="true">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Enter Artist Name" name="query" value="${requestScope.query}" aria-label="Search">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Enter Song Name" name="query" value="${requestScope.query}" aria-label="Search">
                                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                                 </form>
                             </div>
@@ -104,7 +104,7 @@
                                     </td>
                                     <td><img style="width: 75px; height: 75px" src="${song.img}" alt=""></td>
                                     <td>
-                                        <a href="#" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="upsong?id=${song.songID}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                         <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" data-id="${song.songID}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                     </td>
                                 </tr>
@@ -128,7 +128,7 @@
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="delsinger" method="post">
+                    <form action="delsong" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Delete Employee</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

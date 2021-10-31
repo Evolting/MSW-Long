@@ -23,7 +23,7 @@ import model.Song;
  *
  * @author nvlon
  */
-public class MusicCRUDAddServlet extends HttpServlet {
+public class MusicCRUDUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class MusicCRUDAddServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MusicCRUDAddServlet</title>");            
+            out.println("<title>Servlet MusicCRUDUpdateServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MusicCRUDAddServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MusicCRUDUpdateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,17 +63,30 @@ public class MusicCRUDAddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         ArtistDAO adb = new ArtistDAO();
         List<Singer> singers = adb.getSingersCRUD();
-        
+
         CategoryDAO cdb = new CategoryDAO();
         List<Category> categories = cdb.getAllCategory();
-                
-                
+
+        int songID = Integer.parseInt(request.getParameter("id"));
+        SongDAO sdb = new SongDAO();
+        Song song = sdb.getSongByID(songID);
+
+        List<Singer> slist = song.getArtist();
+        String artists = "";
+        for (int i = 0; i < slist.size(); i++) {
+            artists += ("*" + slist.get(i).getSingerID() + "*");
+        }
+
+//        PrintWriter out = response.getWriter();
+//        out.print(artists);
         request.setAttribute("singers", singers);
         request.setAttribute("categories", categories);
-        request.getRequestDispatcher("MusicCRUDAdd.jsp").forward(request, response);
+        request.setAttribute("artists", artists);
+        request.setAttribute("song", song);
+        request.setAttribute("slist", slist);
+        request.getRequestDispatcher("MusicCRUDUpdate.jsp").forward(request, response);
     }
 
     /**
@@ -87,6 +100,8 @@ public class MusicCRUDAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int songID = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String[] s = request.getParameterValues("states[]");
         int[] singers = new int[s.length];
@@ -97,9 +112,10 @@ public class MusicCRUDAddServlet extends HttpServlet {
         String uri = request.getParameter("song");
         String img = request.getParameter("img");
 
-        Song song = new Song(0, 0, name, genre, img, uri);
+        Song song = new Song(songID, 0, name, genre, img, uri);
         SongDAO sdb = new SongDAO();
-        sdb.addSong(song, singers);
+
+        sdb.updateSong(song, singers);
         response.sendRedirect("mcrud");
     }
 

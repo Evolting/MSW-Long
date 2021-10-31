@@ -26,7 +26,7 @@ public class BillDAO extends DBContext {
 
         String sql = "select top 1 transID from bill where date = ? order by transID desc";
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
         LocalDateTime now = LocalDateTime.now(); 
         try {
             PreparedStatement st = connection.prepareStatement(sql);

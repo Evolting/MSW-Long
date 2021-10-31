@@ -116,6 +116,14 @@
         <servlet-name>MusicCRUDAddServlet</servlet-name>
         <servlet-class>controller.MusicCRUDAddServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MusicCRUDDeleteServlet</servlet-name>
+        <servlet-class>controller.MusicCRUDDeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MusicCRUDUpdateServlet</servlet-name>
+        <servlet-class>controller.MusicCRUDUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -231,6 +239,14 @@
     <servlet-mapping>
         <servlet-name>MusicCRUDAddServlet</servlet-name>
         <url-pattern>/addsong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MusicCRUDDeleteServlet</servlet-name>
+        <url-pattern>/delsong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MusicCRUDUpdateServlet</servlet-name>
+        <url-pattern>/upsong</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
