@@ -29,6 +29,11 @@ public class Song {
         this.uri = uri;
     }
 
+    public Song(String name, int likeCount) {
+        this.likeCount = likeCount;
+        this.name = name;
+    }
+
     public int getSongID() {
         return songID;
     }

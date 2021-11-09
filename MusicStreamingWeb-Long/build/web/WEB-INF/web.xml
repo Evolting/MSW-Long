@@ -124,6 +124,10 @@
         <servlet-name>MusicCRUDUpdateServlet</servlet-name>
         <servlet-class>controller.MusicCRUDUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>controller.DashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>MusicCRUDUpdateServlet</servlet-name>
         <url-pattern>/upsong</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

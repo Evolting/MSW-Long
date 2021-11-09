@@ -81,7 +81,9 @@
                 <div class="colection_body">
                     <div class="collection_header">
                         <div class="header_left">
-                            <i class="fas fa-chevron-circle-left fa-3x" style="color:black"></i>
+                            <a href="javascript: history.go(-1)">
+                                <i class="fas fa-chevron-circle-left fa-3x" style="color:black"></i>
+                            </a>
                         </div>
                         <div class="header_right">
                             <c:if test="${sessionScope.account==null}" >
@@ -94,7 +96,6 @@
                                     <div class="dropdown-menu">
                                         <ul> 
                                             <c:if test="${sessionScope.account.role == 'admin'}">
-                                                <li><a href="#" style="color: black">Dashboard</a></li>
                                                 <li><a href="acrud?page=1&query=" style="color: black">Music CRUD</a></li>
                                             </c:if>
                                             <li><a href="profile" style="color: black">Account</a></li>

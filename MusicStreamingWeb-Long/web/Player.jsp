@@ -200,7 +200,6 @@
                                     <div class="dropdown-menu">
                                         <ul> 
                                             <c:if test="${sessionScope.account.role == 'admin'}">
-                                                <li><a href="#" style="color: black">Dashboard</a></li>
                                                 <li><a href="acrud?page=1&query=" style="color: black">Music CRUD</a></li>
                                             </c:if>
                                             <li><a href="profile" style="color: black">Account</a></li>
@@ -611,18 +610,3 @@
         app.start()
     </script>
 </html>
-
-
-<!-- Function list  
-    0.sync 2 play button control  --done
-    1.Render and display songs      --done
-    2.Play / pause /seek            --done
-    3. Next/prev control            --done
-    4. Random Songs control         -done
-    5.Next/Repeat when song ended       -done
-    6. Play song choosed in list when click on this song    --done
-    7.Active love_button,sync 2 love_button
-    8.Song active: music waves animation            --done
-    9.More_button display text info when click, sync 2 more
-    10.Volumn song control-->
-<!-- Player Process -->

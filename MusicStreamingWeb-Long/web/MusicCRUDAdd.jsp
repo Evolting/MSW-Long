@@ -39,19 +39,26 @@
                 $("#image").attr("src", $("#img").val());
             });
         </script>
+        <style>
+            body{
+                background: url('https://routenote.com/blog/wp-content/uploads/2020/10/Screenshot-2020-10-07-at-15.53.56-1280x589.png');
+            }
+            .form-horizontal{
+                border: solid black; 
+                background: url('https://wallpapercave.com/wp/wp499258.jpg');
+            }
+        </style>
         <title>Add Song</title>
     </head>
     <body>
-        <div>
-            
-        </div>
         <div class="container-xl">
             <div class="mt-3">
                 <a href="home"><button type="button" class="btn btn-success">Home</button></a>
                 <a href="acrud"><button type="button" class="btn btn-danger">Artist Management</button></a>
                 <a href="mcrud"><button type="button" class="btn btn-warning">Music Management</button></a>
+                <a href="dashboard"><button type="button" class="btn btn-info">Dashboard</button></a>
             </div>
-            <div>
+            <div class="mt-3">
                 <form class="form-horizontal mx-auto col-10 col-md-9 col-lg-8 m-3" action="addsong" method="POST">
                     <fieldset>
 
@@ -61,7 +68,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <div class="col-md-4">
-                                <img src="" id="image" style="width: 120px; height: 120px;">
+                                <img src="" id="image" style="width: 300px; height: 300px; background: wheat">
                             </div>
                         </div>
 
@@ -69,7 +76,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="id">Song Name</label>  
                             <div class="col-md-4">
-                                <input style="width:250px" name="name" value="${requestScope.id}" class="form-control input-lg" type="text" required>
+                                <input style="width:500px" name="name" value="${requestScope.id}" class="form-control input-lg" type="text" required>
                             </div>
                         </div>
 
@@ -77,7 +84,7 @@
                             <label class="col-md-4 control-label" for="id">Artist</label>  
                             <div class="col-md-5 field_wrapper">
                                 <div style="display: inline-flex; margin-top: 5px; margin-bottom: 5px">
-                                    <select class="js-example-basic-multiple" name="states[]" style="width:250px" multiple="multiple">
+                                    <select class="js-example-basic-multiple" name="states[]" style="width:500px" multiple="multiple">
                                         <c:forEach items="${requestScope.singers}" var="singer">
                                             <option value="${singer.singerID}">${singer.name}</option>
                                         </c:forEach>
@@ -102,14 +109,14 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="num">Song URL</label>  
                             <div class="col-md-4">
-                                <input style="width:250px" name="song" class="form-control input-lg" type="text" required>
+                                <input style="width:500px" name="song" class="form-control input-lg" type="text" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="num">Image URL</label>  
                             <div class="col-md-4">
-                                <input style="width:250px" id="img" name="img" class="form-control input-lg" type="text" required>
+                                <input style="width:500px" id="img" name="img" class="form-control input-lg" type="text" required>
                             </div>
                         </div>
 

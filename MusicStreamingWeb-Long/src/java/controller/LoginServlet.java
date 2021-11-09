@@ -5,6 +5,11 @@ import dal.ContractDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -76,34 +81,46 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         AccountDAO db = new AccountDAO();
         Account a = db.getAccount(username, password);
-        
+
         // nếu tài khoản không tồn tại
         if (a == null) {
             request.setAttribute("error", "Tài khoản " + username + " không tồn tại");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
-        } 
-        
-        
-        // nếu tồn tại tài khoản
+        } // nếu tồn tại tài khoản
         else {
             HttpSession session = request.getSession();
-            
+
             // lấy data người dùng từ db
             UserDAO adb = new UserDAO();
             User cus = adb.getCustomerInfo(a);
             session.setAttribute("user", cus);
-            
-            
+
             // lấy data contract từ db
             ContractDAO cdb = new ContractDAO();
             Contract contract = cdb.getContractInfo(username);
-            session.setAttribute("contract", contract);
-            
+            if (contract != null) {
+                session.setAttribute("contract", contract);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date now = new Date();
+                Date end = null;
+                try {
+                    end = sdf.parse(contract.getEndDate());
+                } catch (ParseException ex) {
+                    Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (!now.before(end)) {
+                    adb.downgrade(cus.getUsername());
+                }
+            }
             
             // lấy data về account đặt lên session
             session.setAttribute("account", a);
-
-            response.sendRedirect("acrud");
+            if (a.getRole().equals("admin")) {
+                response.sendRedirect("acrud");
+            } else {
+                response.sendRedirect("home");
+            }
         }
     }
 

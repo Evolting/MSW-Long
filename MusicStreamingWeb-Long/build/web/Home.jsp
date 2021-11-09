@@ -27,6 +27,7 @@
             .login_button:hover {
                 color: blue;
             }
+
         </style>
         <title>Open</title>
     </head>
@@ -88,13 +89,18 @@
                                 <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
                                 <p style="font-size: small; font-weight: normal">
                                     <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                        <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                        <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                     </c:forEach>
                                 </p>
                                 <p style="font-size: smaller; font-weight: normal">Like: ${song.likeCount}</p>
                             </div>
                         </c:forEach>
                     </div>
+                        
+                        
+                        
+                        
+                        
                     <div class="middle_section">
                         <h1 style="font-size:x-large;padding:20px 0">What's New?</h1>
                         <div class="large-boxes" style="display:grid; grid-template-columns: auto auto auto auto; grid-gap: 10px;">
@@ -104,7 +110,7 @@
                                     <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
                                     <p style="font-size: small; font-weight: normal">
                                         <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                            <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                         </c:forEach>
                                     </p>
                                 </div>
@@ -112,6 +118,9 @@
                         </div>
 
                     </div>
+                        
+      
+                        
                     <h1 style="font-size:x-large;padding:20px 0">Latest From Your Favorite Artist</h1>
                     <div class="boxes">
                         <c:forEach var="song" items="${requestScope.top8}">
@@ -123,7 +132,7 @@
                                     <a href="player?songID=${song.songID}">${song.name}</a>
                                     <p style="font-size: smaller; font-weight: normal">
                                         <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                            <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                            <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                         </c:forEach>
                                     </p>
                                     <p style="font-size: smaller; font-weight: normal">Like: ${song.likeCount}</p>
@@ -133,41 +142,6 @@
                     </div>
                 </div>
             </div>
-            <!--            <div class="player_footer">
-                            <div class="footer_left">
-                                <img class="song_playing" src="https://upload.wikimedia.org/wikipedia/vi/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png" />
-                                <div class="song_info">
-                                    <h4>34+35</h4>
-                                    <p>Ariana Grande</p>
-                                </div>
-                            </div>
-                            <div class="footer_center">
-                                <div class="control_bar">
-                                    <i class="fas fa-random fa-2x" style="color:green" id="control_green"></i>
-                                    <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
-                                    <i class="far fa-play-circle fa-5x" id="control_icon"></i>
-                                    <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
-                                    <i class="fas fa-redo fa-2x" style="color:green" id="control_green"></i>
-                                </div>
-                                <div class="progress-container">
-                                    <span>0:49</span>
-                                    <div class="progress-bar">
-                                        <div class="progress"></div>
-                                    </div>
-                                    <span>3:15</span>
-                                </div>   
-                            </div>
-                            <div class="footer_right">
-                                <i class="fas fa-list-ul fa-2x"></i>
-                                <i class="fas fa-volume-up fa-2x"></i>
-                                <div class="input-div">
-                                    <div class="volumn-input-div">
-                                        <input type="range" value="100" step="5">
-                                        <div class="volume-progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
         </div>
     </body>
 </html>

@@ -34,6 +34,13 @@ public class Bill {
         this.fullname = fullname;
     }
 
+    public Bill(int billID, String username, String date, float amount) {
+        this.billID = billID;
+        this.username = username;
+        this.date = date;
+        this.amount = amount;
+    }
+    
     public int getBillID() {
         return billID;
     }

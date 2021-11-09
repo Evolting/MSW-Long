@@ -52,7 +52,6 @@
                                     <div class="dropdown-menu">
                                         <ul> 
                                             <c:if test="${sessionScope.account.role == 'admin'}">
-                                                <li><a href="#" style="color: black">Dashboard</a></li>
                                                 <li><a href="acrud?page=1&query=" style="color: black">Music CRUD</a></li>
                                             </c:if>
                                             <li><a href="profile" style="color: black">Account</a></li>
@@ -88,7 +87,7 @@
                                 <div class="large-boxes_tittle" style="font-size: small; font-weight: bold"><a href="player?songID=${song.songID}">${song.name}</a></div>
                                 <p style="font-size: small; font-weight: normal">
                                     <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                        <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                        <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                     </c:forEach>
                                 </p>
                             </div>

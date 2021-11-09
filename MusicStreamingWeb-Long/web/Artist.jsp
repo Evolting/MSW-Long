@@ -87,18 +87,17 @@
                         </div>
                     </div>
                     <div class="body_songs">
-                        <div class="body_song_icon play_button" style="display: flex;
-                             align-items: center;">
-                            <i class="fas fa-play-circle fa-5x" id="playlist_body_suffle" style="color: green;"></i>
-                            <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
-                            <span style="font-size: larger;font-weight:bolder;padding:10px;border:1px solid gray;margin-right:20px">THEO DÕI</span>
-                            <i class="fas fa-ellipsis-h fa-2x" style="color: gray;"></i>
-                        </div>
-                        <span style="font-size:x-large;font-weight:bolder">Phổ biến</span>
+                        <c:if test="${sessionScope.account!=null}" >
+                            <div class="body_song_icon play_button" style="display: flex;align-items: center;">
+                                <i class="fas fa-play-circle fa-5x" id="playlist_body_suffle" style="color: green;"></i>
+                                <i class="fas fa-pause-circle fa-5x my pause" id="playlist_body_suffle"></i>
+                                <span style="font-size: larger;font-weight:bolder;padding:10px;border:1px solid gray;margin-right:20px">THEO DÕI</span>
+                                <i class="fas fa-ellipsis-h fa-2x" style="color: gray;"></i>
+                            </div>
+                        </c:if>
                         <div class="playlist_song" style="margin-top: 20px;">
                         </div>
                         <div style="display: flex;flex-direction:column">
-                            <span id="View_song_more" style="font-size: larger; margin:20px">XEM NHIỀU HƠN</span>
                             <span  style="font-size:x-large; margin-left:20px;font-weight:bolder">Bản phát hành nổi tiếng</span>
                         </div>
                         <!-- Album -->
@@ -113,7 +112,7 @@
                                         <span><a href="player?songID=${song.songID}">${song.name}</a></span>
                                         <span>
                                             <c:forEach items="${song.artist}" var="sg" varStatus="loop">
-                                                <a href="#">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
+                                                <a href="artist?aid=${sg.singerID}">${sg.name}<c:if test="${!loop.last}">,</c:if> </a>
                                             </c:forEach>
                                         </span>
                                     </div>
@@ -122,154 +121,31 @@
                         </div>
 
                     </div>
-                    <!--                    <span  style="font-size:x-large; margin-left:20px;font-weight:bolder">Album</span>
-                                         box 
-                                        <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;margin-left:20px">
-                                            <img src="https://i.scdn.co/image/ab67616d00001e02b917d2ebea0426851f472c38" alt="" style="width: 230px;height:250px;padding:10px;">
-                                            <div style="display: flex;
-                                                 flex-direction: column;
-                                                 align-items: center; font-weight:bolder;font-size:larger">
-                                                <span>Album's name</span>
-                                                <span>Album's Artis</span>
-                                            </div>
-                                        </div>
-                    
-                                         Single Album  
-                                        <div style="margin:20px;"> 
-                                            <span  style="font-size:x-large;font-weight:bolder">ĐĨA ĐƠN VÀ ĐĨA MỞ RỘNG (EP)</span>
-                                             box 
-                                            <div style="display: flex;justify-content: space-between;">
-                                                <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                                    <img src="https://i.scdn.co/image/ab67706f00000002e36385de2a213f78e6df47ec" alt="" style="width: 230px;height:250px;padding:10px;">
-                                                    <div style="display: flex;
-                                                         flex-direction: column;
-                                                         align-items: center; font-weight:bolder;font-size:larger">
-                                                        <span>Album's name</span>
-                                                        <span>Album's Artis</span>
-                                                    </div>
-                                                </div>
-                                                 box 
-                                                <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                                    <img src="https://i.scdn.co/image/ab67706f00000002e36385de2a213f78e6df47ec" alt="" style="width: 230px;height:250px;padding:10px;">
-                                                    <div style="display: flex;
-                                                         flex-direction: column;
-                                                         align-items: center; font-weight:bolder;font-size:larger">
-                                                        <span>Album's name</span>
-                                                        <span>Album's Artis</span>
-                                                    </div>
-                                                </div>
-                                                 box 
-                                                <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                                    <img src="https://i.scdn.co/image/ab67706f00000002e36385de2a213f78e6df47ec" alt="" style="width: 230px;height:250px;padding:10px;">
-                                                    <div style="display: flex;
-                                                         flex-direction: column;
-                                                         align-items: center; font-weight:bolder;font-size:larger">
-                                                        <span>Album's name</span>
-                                                        <span>Album's Artis</span>
-                                                    </div>
-                                                </div>
-                                                 box 
-                                                <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                                    <img src="https://i.scdn.co/image/ab67706f00000002e36385de2a213f78e6df47ec" alt="" style="width: 230px;height:250px;padding:10px;">
-                                                    <div style="display: flex;
-                                                         flex-direction: column;
-                                                         align-items: center; font-weight:bolder;font-size:larger">
-                                                        <span>Album's name</span>
-                                                        <span>Album's Artis</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>   -->
 
-                    <!-- Suggestion  -->
-                    <div style="margin:20px;"> 
-                        <span  style="font-size:x-large;font-weight:bolder">CÓ THỂ BẠN CŨNG THÍCH</span>
-                        <!-- box -->
-                        <div style="display: flex;justify-content: space-between;">
-                            <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="" style="width: 230px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Album's name</span>
-                                    <span>Album's Artis</span>
-                                </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="" style="width: 230px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Album's name</span>
-                                    <span>Album's Artis</span>
-                                </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="" style="width: 230px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Album's name</span>
-                                    <span>Album's Artis</span>
-                                </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 230px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab67706f00000002c414e7daf34690c9f983f76e" alt="" style="width: 230px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Album's name</span>
-                                    <span>Album's Artis</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
 
                     <!-- Related Artist  -->
                     <div style="margin:20px;"> 
                         <span  style="font-size:x-large;font-weight:bolder">RELATED ARTIST</span>
                         <!-- box -->
                         <div style="display: flex;justify-content: space-between;">
-                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab6761610000f1786254a3da01d5c5e0fe159347" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Artist's name</span>
+
+                            <c:forEach items="${requestScope.relateds}" var="sg">
+                                <!-- box -->
+                                <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
+                                    <img src="${sg.img}" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
+                                    <div style="display: flex;
+                                         flex-direction: column;
+                                         align-items: center; font-weight:bolder;font-size:larger">
+                                        <span><a href="artist?aid=${sg.singerID}">${sg.name}</a></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab6761610000f1786254a3da01d5c5e0fe159347" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Artist's name</span>
-                                </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab6761610000f1786254a3da01d5c5e0fe159347" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Artist's name</span>
-                                </div>
-                            </div>
-                            <!-- box -->
-                            <div style="height:300px;width: 250px;background:rgba(255, 255, 255, 0.1);display:flex;flex-direction:column;">
-                                <img src="https://i.scdn.co/image/ab6761610000f1786254a3da01d5c5e0fe159347" alt="" style="border-radius:50%;width: 250px;height:250px;padding:10px;">
-                                <div style="display: flex;
-                                     flex-direction: column;
-                                     align-items: center; font-weight:bolder;font-size:larger">
-                                    <span>Artist's name</span>
-                                </div>
-                            </div>
+                            </c:forEach>
+
                         </div>
                     </div> 
+
+
+
                     <div style="margin:20px;display:flex;flex-direction:column"> 
                         <span  style="font-size:x-large;font-weight:bolder">GIỚI THIỆU</span>
                         <img src="https://i.scdn.co/image/4edc74079bee330c2b0569d319427018ca40cd3a" alt="" style="width:90%;height:500px" >
@@ -277,53 +153,7 @@
                     </div> 
                 </div>
             </div>
-            <!--            <div class="player_footer">
-                            <div class="footer_left">
-                                <img class="song_playing"
-                                     src="https://upload.wikimedia.org/wikipedia/vi/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png" />
-                                <div class="song_info">
-                                    <h4 id="my_tittle"></h4>
-                                    <p id="my_artis"></p>
-                                </div>
-                            </div>
-            
-                            <div class="footer_center">
-                                <div class="control_bar">
-                                    <i class="fa fa-random fa-2x" id="control_green"></i>
-                                    <i class="fas fa-step-backward fa-2x" id="control_icon"></i>
-                                    <div class="play_button">
-                                        <i class="far fa-play-circle fa-5x " id="control_icon"></i>
-                                        <i class="fas fa-pause-circle fa-5x my pause"></i>
-                                    </div>
-            
-            
-                                    <i class="fas fa-step-forward fa-2x" id="control_icon"></i>
-                                    <i class="fas fa-retweet fa-2x" id="control_green"></i>
-                                </div>
-                                <div class="progress-container">
-                                    <span id="start_time"></span>
-                                    <div class="progress-bar">
-                                        <div class="progress" id="progress"></div>
-                                        <audio id="audio" src=""></audio>
-                                    </div>
-                                    <span id="end_time"></span>
-                                </div>
-                            </div>
-                            <div class="footer_right">
-                                <i class="fas fa-list-ul fa-2x"></i>
-                                <div class="volume_control">
-                                    <i id="volume" class="fas fa-volume-up fa-2x"></i>
-                                    <i id="volume_mute" class="fas fa-volume-mute fa-2x changesound"></i>
-                                </div>
-            
-                                <div class="input-div">
-                                    <div class="volumn-input-div">
-                                        <input type="range" value="100" step="5" min="0" >
-            
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
+
         </div>
     </body>
 </html>

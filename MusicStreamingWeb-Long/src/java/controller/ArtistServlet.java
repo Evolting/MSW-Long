@@ -85,8 +85,10 @@ public class ArtistServlet extends HttpServlet {
         SongDAO sdb = new SongDAO();
         
         List<Song> songs = sdb.getSongOfArtist(aid);
+        List<Singer> relateds = adb.getRelatedArtist(aid);
         
         request.setAttribute("songs", songs);
+        request.setAttribute("relateds", relateds);
         
         request.getRequestDispatcher("Artist.jsp").forward(request, response);
         

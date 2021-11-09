@@ -20,6 +20,11 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/CRUD.css">
+        <style>
+            body{
+                background: url('https://routenote.com/blog/wp-content/uploads/2020/10/Screenshot-2020-10-07-at-15.53.56-1280x589.png');
+            }
+        </style>
         <script>
             $(document).ready(function () {
                 // Activate tooltip
@@ -52,6 +57,7 @@
                 <a href="home"><button type="button" class="btn btn-success">Home</button></a>
                 <a href="acrud"><button type="button" class="btn btn-danger">Artist Management</button></a>
                 <a href="mcrud"><button type="button" class="btn btn-warning">Music Management</button></a>
+                <a href="dashboard"><button type="button" class="btn btn-info">Dashboard</button></a>
             </div>
             <div class="table-responsive">
                 <div class="table-wrapper">
@@ -130,7 +136,7 @@
                 <div class="modal-content">
                     <form action="delsong" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Employee</h4>
+                            <h4 class="modal-title">Delete</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					

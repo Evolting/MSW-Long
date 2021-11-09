@@ -141,6 +141,31 @@ public class ArtistDAO extends DBContext{
         return out;
     }
     
+    public List<Singer> getRelatedArtist(int aid){
+        List<Singer> slist = new ArrayList<>();
+        List<Integer> relateds = new ArrayList<>();
+        
+        String sql = "select * from songOf where singerID != ? and songID in (select songID from songOf where singerID = ?) ";
+        
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, aid);
+            st.setInt(2, aid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                relateds.add(rs.getInt("singerID"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        for (int i = 0; i < relateds.size(); i++) {
+            slist.add(getSingerByID(relateds.get(i)));
+        }
+        
+        return slist;
+    }
+    
     public int updateSinger(Singer singer){
         int out = 0;
         String sql = "update singer set name = ?, info = ?, img = ? where singerID = ?";
@@ -159,5 +184,9 @@ public class ArtistDAO extends DBContext{
     
     public static void main(String[] args) {
         ArtistDAO adb = new ArtistDAO();
+        List<Singer> relateds = adb.getRelatedArtist(10);
+        for (Singer related : relateds) {
+            System.out.println(related);
+        }
     }
 }
